@@ -2,9 +2,9 @@
 // ROUTE CONSTANTS
 //=========================
 export const LANDING = '/';
-export const ACTIVITIES = '/ACTIVITIES';
-export const LODGING = '/LODGING';
-export const REGISTRY = '/REGISTRY';
+export const ACTIVITIES = '/activities';
+export const LODGING = '/lodging';
+export const REGISTRY = '/registry';
 
 //=========================
 // EXPORT MASTER

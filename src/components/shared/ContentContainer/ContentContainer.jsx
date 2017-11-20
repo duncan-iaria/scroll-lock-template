@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import routes from '../../../constants/route.constants';
 
 //COMPONENTS
+import Header from '../Header/Header';
 import Landing from '../../pages/Landing/Landing';
 import Activities from '../../pages/Activities/Activities';
 import Registry from '../../pages/Registry/Registry';
@@ -18,6 +19,7 @@ class ContentContainer extends Component {
     render() {
         return (
             <div className="content-container">
+                <Header/>
                 <Route exact path={ routes.LANDING } component={ Landing }/>
                 <Route path={ routes.ACTIVITIES } component={ Activities }/>
                 <Route path={ routes.REGISTRY } component={ Registry }/>
