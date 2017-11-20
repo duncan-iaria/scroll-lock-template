@@ -1,0 +1,24 @@
+@import './variables.style.scss';
+@import url('https://fonts.googleapis.com/css?family=Parisienne|Slabo+27px');
+
+//default text color
+p, h1, h2, h3, h4 {
+    color: $oxblood;
+}
+
+#root{
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: $ecruLight;
+    font-family: 'Slabo 27px', serif;
+    font-size: 16px;
+    line-height: 1.333em;
+    height: 100%;
+    width: 100%;
+}

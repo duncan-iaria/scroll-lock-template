@@ -1,0 +1,12 @@
+.animated-text__text--active {
+    margin-top: 0px;
+    opacity: 1;
+    transition: all 1.5s;
+    -webkit-transition-timing-function: ease-out; /* Safari and Chrome */
+    transition-timing-function: ease-out;
+}
+
+.animated-text__text--inactive {
+    margin-top: -50px;
+    opacity: 0;
+}
