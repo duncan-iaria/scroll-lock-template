@@ -12,11 +12,14 @@ import './Landing.style.css';
 const Landing = () => {
     return(
         <div className="landing__container">
-            <h1 className="landing__title">
+            <div className="landing__title">
                 <AnimatedText>
                     Join us for a fall time celebration of love!
+                    <br/>
+                    <br/>                    
+                    10 / 27 / 2018
                 </AnimatedText>
-            </h1>
+            </div>
             {/* <h1>LANDING PAGE</h1>
             <div>
                 <div className="landing__color-block ecru"></div>
