@@ -8,7 +8,7 @@ import './AnimatedText.style.css';
 //=========================
 const AnimatedText = ( { children } ) => {
     return(
-        <div className="animated_text">
+        <div className="animated-text__text">
             { children }
         </div>
     )
