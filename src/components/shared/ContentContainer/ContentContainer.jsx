@@ -19,44 +19,26 @@ import './ContentContainer.style.css';
 //=========================
 class ContentContainer extends Component {
     render() {
-        const { location } = this.props;
+        const { location, history } = this.props;
         console.log( this.props ); 
+        console.log( history );
         return (
             <div className="ContentContainer__container">
                 <Header/>
 
                 <TransitionGroup className="page-container">
                     <PageTransition
-                        key={location.key}>
+                        key={location.key}
+                        duration={800}>
                         <Switch location={location}>
                             <Route exact path={ routes.LANDING } component={ Landing }/>
                             <Route exact path={ routes.REGISTRY } component={ Registry }/>
-                            <Route exact path={ routes.ACTIVITIES } component={ Activities }/>
+                            
+                            <Route exact path={ routes.ACTIVITIES } render={ history => <Activities history={history}/> }/>
+
                             <Route exact path={ routes.LODGING } component={ Lodging }/>
                             <Route render={ () => <div>Page not found...</div> }/>
                         </Switch>
-                    {/* <Route exact path={ routes.LANDING } component={ Landing }/>
-
-                    <Route
-                        location={location}
-                        path={ routes.ACTIVITIES }
-                        render={ props => (
-                                    <Activities/> 
-                            )
-                        }>
-                    </Route>
-                    
-                    <Route
-                        location={location}
-                        path={ routes.REGISTRY }
-                        render={ props => (
-                                    <Registry/>
-                            )
-                        }>
-                    </Route>
-
-
-                    <Route path={ routes.LODGING } component={ Lodging }/> */}
                     </PageTransition>
                 </TransitionGroup>               
             </div>

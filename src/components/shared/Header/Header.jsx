@@ -10,11 +10,11 @@ import './Header.style.css';
 //=========================
 const Header = () => {
     return (
-        <div className="header__container">
-            <div className="header__nav-container">
-                <NavLink className="header__nav-link" to={ routes.REGISTRY }>Registery</NavLink>
-                <NavLink className="header__nav-link" to={ routes.ACTIVITIES }>Activities</NavLink>
-                <NavLink className="header__nav-link" to={ routes.LODGING }>Lodging</NavLink>                
+        <div className="Header__container">
+            <div className="nav-container">
+                <NavLink className="nav-link" to={ routes.REGISTRY }>Registery</NavLink>
+                <NavLink className="nav-link" to={ routes.ACTIVITIES }>Activities</NavLink>
+                <NavLink className="nav-link" to={ routes.LODGING }>Lodging</NavLink>                
             </div>
         </div>
     )

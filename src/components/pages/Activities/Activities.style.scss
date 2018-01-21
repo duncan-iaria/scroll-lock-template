@@ -1,9 +1,12 @@
 @import '../../styles/variables.style.scss';
 
-.Registry__container{
+.Activities__container {
     width: 100%;
     height: 100%;
-    background-color: $ocean;
-
+    background-color: $oxblood;
     overflow-y: auto;
+
+    p {
+        color: $ecruLight;
+    }
 }

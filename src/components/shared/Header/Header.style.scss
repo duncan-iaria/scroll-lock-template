@@ -1,6 +1,7 @@
 @import '../../styles/variables.style.scss';
 
-.header__container {
+.Header__container {
+
     display: flex;
     justify-content: flex-end;
     
@@ -11,15 +12,12 @@
     height: 40px;
 
     z-index: 100;
-
-    // background-color: red;
-}
-
-.header__nav-container {
-    padding: 4px 10px;
-    // background-color: blue;
-}
-
-.header__nav-link {
-    margin-right: 14px;
+    
+    .nav-container {
+        padding: 4px 10px;
+    }
+    
+    .nav-link {
+        margin-right: 14px;
+    }    
 }
