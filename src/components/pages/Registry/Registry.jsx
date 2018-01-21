@@ -1,11 +1,16 @@
 import React from 'react';
 
+//STYLES
+import './Registry.style.css';
+
 //=========================
 // COMPONENT
 //=========================
 const Registry = () => {
-    return( 
-        <h1>REGISTRY</h1>
+    return(
+        <div className="Registry__container">
+            <h1>REGISTRY</h1>
+        </div> 
     );
 }
 
