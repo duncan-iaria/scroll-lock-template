@@ -4,12 +4,12 @@ import { CSSTransition } from 'react-transition-group'
 // STYLE
 import './PageTransition.style.css';
 
-const PageTransition = ({ children, duration, ...props }) => {
+const PageTransition = ({ children, duration, animationClass, ...props }) => {
   return (
     <CSSTransition
       {...props}
       timeout={duration}
-      classNames="fade"
+      classNames={animationClass}
     >
       {children}
     </CSSTransition>

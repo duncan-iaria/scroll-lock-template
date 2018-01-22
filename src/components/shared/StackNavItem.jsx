@@ -1,23 +1,13 @@
-// import React from 'react';
+import React from 'react';
 
-// class StackNavItem extends React.Component{
-//     constructor( props ){
-//         super(props);
+const StackNavItem = ({ children, handleWheel, orderIndex }) => {
+    return (
+        <div style={ { width: '100%', height: '100%' } } 
+            onWheel={ tEvent => handleWheel( tEvent.deltaY, orderIndex ) }
+        >
+            { children }
+        </div>
+    );
+}
 
-//         this.state = {
-//             isTransitioning = false,
-//         }
-//     }
-
-//     render(){
-//         return (
-//             <div className={ this.props.className } onWheel=></div>
-//             {children}
-//         )
-//     }
-
-//     onTransition(){
-//         this.setState({ isTransitioning = true });
-
-//     }
-// }
+export default StackNavItem;

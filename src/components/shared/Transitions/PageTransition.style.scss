@@ -1,27 +1,24 @@
-.fade-enter {
+.next-enter {
     transform: translateY( 100% );
-    opacity: 0.5;
     z-index: 1;
     position: absolute;
 }
 
-.fade-enter.fade-enter-active {
+.next-enter.next-enter-active {
+    z-index: 1;    
     transform: translateY( 0% );    
-    opacity: 1;
-    transition: opacity 800ms ease-in, transform 800ms;
+    transition: transform 800ms;
 }
 
-.fade-exit {
+.next-exit {
     transform: translateY( 0% );
     
     z-index: 0;    
-    opacity: 1;
     position: absolute;    
 }
 
-.fade-exit.fade-exit-active {
+.next-exit.next-exit-active {
+    z-index: 0;        
     transform: translateY( -100% );
-    
-    opacity: 0.5;
-    transition: opacity 800ms ease-in, transform 800ms;
+    transition: transform 800ms;
 }
