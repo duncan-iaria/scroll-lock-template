@@ -48,10 +48,6 @@ class ContentContainer extends Component {
             if( orderIndex < screenOrder.length - 1 ){
                 // next route
                 this.setState({ transitionClassName: 'next' });
-                if( orderIndex + 1 === screenOrder.length - 1 ){
-                    // console.log( 'last slide' );
-                    // this.setState({ transitionClassName: 'prev' });
-                }
                 setTimeout( () => {history.push( screenOrder[ orderIndex + 1 ] )},  5 );
             }
         }
@@ -61,7 +57,6 @@ class ContentContainer extends Component {
                 // prev route            
                 this.setState({ transitionClassName: 'prev' });                                         
                 setTimeout( () => {history.push( screenOrder[ orderIndex - 1 ] )},  5 );
-                // history.push( screenOrder[ orderIndex - 1 ] );
             }
         }
 
