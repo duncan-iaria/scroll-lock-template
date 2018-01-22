@@ -25,6 +25,7 @@ class ContentContainer extends Component {
         this.state = {
             isTransitioning: false,
             transitionDuration: 800,
+            transitionClassName: 'next',
             screenOrder: [
                 routes.LANDING,
                 routes.ACTIVITIES,
@@ -43,18 +44,28 @@ class ContentContainer extends Component {
         if( isTransitioning )
             return;
 
-        if( scrollDir >= 0  && orderIndex < screenOrder.length - 1 ){
-            // next route
-            this.setState({ isTransitioning: true });
-            setTimeout( () => { this.setState({ isTransitioning: false}) }, transitionDuration );
-            history.push( screenOrder[ orderIndex + 1 ] );
+        if( scrollDir >= 0 ){
+            if( orderIndex < screenOrder.length - 1 ){
+                // next route
+                history.push( screenOrder[ orderIndex + 1 ] );
+                this.setState({ transitionClassName: 'next' });
+                if( orderIndex + 1 === screenOrder.length - 1 ){
+                    console.log( 'last slide' );
+                    this.setState({ transitionClassName: 'prev' });
+                }
+            }
         }
-        else if ( orderIndex > 0 ){
-            // prev route
-            this.setState({ isTransitioning: true });  
-            setTimeout( () => { this.setState({ isTransitioning: false}) }, transitionDuration );              
-            history.push( screenOrder[ orderIndex - 1 ] );        
+        else if ( scrollDir < 0 ){
+            if( orderIndex > 0 )
+            {                
+                // prev route            
+                history.push( screenOrder[ orderIndex - 1 ] );
+                this.setState({ transitionClassName: 'prev' });                                         
+            }
         }
+
+        this.setState({ isTransitioning: true });  
+        setTimeout( () => { this.setState({ isTransitioning: false }) }, transitionDuration );  
     }
 
     getOrderIndex( navItem ){
@@ -69,7 +80,8 @@ class ContentContainer extends Component {
 
     render() {
         const { location, history } = this.props;
-
+        const { transitionClassName, transitionDuration } = this.state;
+        console.log( transitionClassName );
         return (
             <div className="ContentContainer__container">
                 <Header/>
@@ -77,8 +89,8 @@ class ContentContainer extends Component {
                 <TransitionGroup className="page-container">
                     <PageTransition
                         key={location.key}
-                        duration={800}
-                        animationClass="next"
+                        duration={transitionDuration}
+                        animationClass='next'
                     >
                         <Switch location={location}>
                             <Route exact path={ routes.LANDING } render={ () =>

@@ -1,6 +1,4 @@
 import React from 'react';
-import { REGISTRY, LODGING } from '../../../constants/route.constants';
-import { Redirect } from 'react-router-dom';
 
 // STYLES
 import './Activities.style.css';
