@@ -47,20 +47,21 @@ class ContentContainer extends Component {
         if( scrollDir >= 0 ){
             if( orderIndex < screenOrder.length - 1 ){
                 // next route
-                history.push( screenOrder[ orderIndex + 1 ] );
                 this.setState({ transitionClassName: 'next' });
                 if( orderIndex + 1 === screenOrder.length - 1 ){
-                    console.log( 'last slide' );
-                    this.setState({ transitionClassName: 'prev' });
+                    // console.log( 'last slide' );
+                    // this.setState({ transitionClassName: 'prev' });
                 }
+                setTimeout( () => {history.push( screenOrder[ orderIndex + 1 ] )},  5 );
             }
         }
         else if ( scrollDir < 0 ){
             if( orderIndex > 0 )
             {                
                 // prev route            
-                history.push( screenOrder[ orderIndex - 1 ] );
                 this.setState({ transitionClassName: 'prev' });                                         
+                setTimeout( () => {history.push( screenOrder[ orderIndex - 1 ] )},  5 );
+                // history.push( screenOrder[ orderIndex - 1 ] );
             }
         }
 
@@ -90,7 +91,7 @@ class ContentContainer extends Component {
                     <PageTransition
                         key={location.key}
                         duration={transitionDuration}
-                        animationClass='next'
+                        animationClass={transitionClassName}
                     >
                         <Switch location={location}>
                             <Route exact path={ routes.LANDING } render={ () =>
