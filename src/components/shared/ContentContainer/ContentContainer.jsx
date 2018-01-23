@@ -38,8 +38,11 @@ class ContentContainer extends Component {
     }
 
     onHandleScroll( scrollDir, orderIndex ){
+        // const scrollDir = scrollEvent.deltaY
         const { screenOrder, transitionDuration, isTransitioning } = this.state;
         const { history } = this.props;
+
+        // console.log( scrollDir );
 
         if( isTransitioning )
             return;
@@ -61,7 +64,7 @@ class ContentContainer extends Component {
         }
 
         this.setState({ isTransitioning: true });  
-        setTimeout( () => { this.setState({ isTransitioning: false }) }, transitionDuration );  
+        setTimeout( () => { this.setState({ isTransitioning: false }) }, transitionDuration + 100 );  
     }
 
     getOrderIndex( navItem ){
@@ -77,7 +80,7 @@ class ContentContainer extends Component {
     render() {
         const { location, history } = this.props;
         const { transitionClassName, transitionDuration } = this.state;
-        console.log( transitionClassName );
+        // console.log( transitionClassName );
         return (
             <div className="ContentContainer__container">
                 <Header/>
