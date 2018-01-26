@@ -20,7 +20,6 @@ class StackNavItem extends React.PureComponent {
     }
     
     onHandleWheel( tScrollDir, tOrderIndex ){
-        // console.log('debounce');
         this.props.handleWheel( tScrollDir, tOrderIndex );
     }
 
