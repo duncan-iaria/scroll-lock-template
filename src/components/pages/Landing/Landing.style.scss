@@ -1,0 +1,50 @@
+@import '../../styles/variables.style.scss';
+
+.landing__container {
+    display: flex;
+    height: 100%;
+
+    align-content: center;
+    justify-content: center;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    // background-image: url( 'https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1350&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D' );
+    background-image: url( 'https://images.unsplash.com/photo-1428452932365-4e7e1c4b0987?auto=format&fit=crop&w=1650&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D' );    
+}
+
+.landing__title {
+    font-size: 2em;
+    color: $ecru;
+    align-self: center;
+    font-family: 'Parisienne', cursive;
+    text-align: center;
+}
+
+//color swatches
+.landing__color-block {
+    display: inline-block;
+    margin-left: 12px;
+    height: 50px;
+    width: 50px;
+}
+
+.ecru {
+    background-color: $ecru;
+}
+
+.olive {
+    background-color: $olive;
+}
+
+.plum {
+    background-color: $plum;    
+}
+
+.ocean {
+    background-color: $ocean;    
+}
+
+.oxblood {
+    background-color: $oxblood;    
+}
