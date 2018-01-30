@@ -11,7 +11,6 @@ import './Lodging.style.css';
 // COMPONENT
 //=========================
 const Lodging = () => {
-    console.log( lodgingData );
     return(
         <div className="Lodging__container">
             <div className="content">

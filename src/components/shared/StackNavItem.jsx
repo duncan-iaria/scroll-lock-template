@@ -18,6 +18,12 @@ class StackNavItem extends React.PureComponent {
     componentWillUnmount(){
         this.onHandleWheel.cancel();
     }
+
+    componentDidMount(){
+        const { orderIndex } = this.props;
+        const element = document.getElementById( `stack-nav-item-${orderIndex}` );
+        console.log( element.offsetHeight );
+    }
     
     onHandleWheel( tScrollDir, tOrderIndex ){
         this.props.handleWheel( tScrollDir, tOrderIndex );
@@ -40,7 +46,9 @@ class StackNavItem extends React.PureComponent {
     render(){
         const { children, handleWheel, orderIndex } = this.props;
         return (
-            <div style={ { width: '100%', height: '100%' } } 
+            <div
+                id={`stack-nav-item-${orderIndex}`}
+                style={ { width: '100%', height: '100%', overflow: 'auto' } } 
                 onWheel={ tEvent => this.onHandleWheel( tEvent.deltaY, orderIndex ) }
                 onTouchStart={ e => { this.handleTouchStart( e.touches[0].pageY ) } }
                 onTouchMove={ e => { this.handleTouch( e.touches[0].pageY ) } }

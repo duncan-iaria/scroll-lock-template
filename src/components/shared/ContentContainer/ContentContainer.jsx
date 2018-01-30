@@ -24,7 +24,7 @@ class ContentContainer extends Component {
         
         this.state = {
             isTransitioning: false,
-            transitionDuration: 800,
+            transitionDuration: 900,
             transitionClassName: 'next',
             screenOrder: [
                 routes.LANDING,
@@ -123,7 +123,7 @@ class ContentContainer extends Component {
                             />
 
                             <Route exact path={ routes.REGISTRY } render={ () =>
-                                    <StackNavItem 
+                                    <StackNavItem
                                         handleWheel={ this.onHandleScroll }
                                         orderIndex={ this.getOrderIndex( routes.REGISTRY ) }
                                     >
