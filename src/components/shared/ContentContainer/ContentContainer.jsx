@@ -42,8 +42,6 @@ class ContentContainer extends Component {
         const { screenOrder, transitionDuration, isTransitioning } = this.state;
         const { history } = this.props;
 
-        // console.log( scrollDir );
-
         if( isTransitioning )
             return;
 

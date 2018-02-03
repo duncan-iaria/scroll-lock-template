@@ -1,5 +1,6 @@
 import React from 'react';
 import { debounce, throttle } from 'lodash';
+import Waypoint from 'react-waypoint';
 
 class StackNavItem extends React.PureComponent {
     constructor( props ){
@@ -7,6 +8,8 @@ class StackNavItem extends React.PureComponent {
 
         this.state = {
             touchStartY: null,
+            isStartOfPage: false,
+            isEndOfPage: false,
         }
 
         this.onHandleWheel = debounce( this.onHandleWheel, 50, { leading: true, trailing: false } );
@@ -18,15 +21,18 @@ class StackNavItem extends React.PureComponent {
     componentWillUnmount(){
         this.onHandleWheel.cancel();
     }
-
-    componentDidMount(){
-        const { orderIndex } = this.props;
-        const element = document.getElementById( `stack-nav-item-${orderIndex}` );
-        console.log( element.offsetHeight );
-    }
     
     onHandleWheel( tScrollDir, tOrderIndex ){
-        this.props.handleWheel( tScrollDir, tOrderIndex );
+        const { isEndOfPage, isStartOfPage } = this.state;
+
+        if( isEndOfPage && tScrollDir > 0  ){
+            this.props.handleWheel( tScrollDir, tOrderIndex );
+        }
+        else if ( isStartOfPage && tScrollDir < 0 )
+        {
+            this.props.handleWheel( tScrollDir, tOrderIndex );            
+        }
+
     }
 
     handleTouchStart( tTouchPosY ){
@@ -53,7 +59,17 @@ class StackNavItem extends React.PureComponent {
                 onTouchStart={ e => { this.handleTouchStart( e.touches[0].pageY ) } }
                 onTouchMove={ e => { this.handleTouch( e.touches[0].pageY ) } }
             >
+                <Waypoint 
+                    onEnter={ () => { this.setState({ isStartOfPage: true }) }}
+                    onLeave={ () => { this.setState({ isStartOfPage: false }) }}>
+                        <div style={{ transform: 'translate( 0px, 4px)', height: '1px'}}></div>
+                </Waypoint>
                 { children }
+                <Waypoint 
+                    onEnter={ () => { this.setState({ isEndOfPage: true }) }}
+                    onLeave={ () => { this.setState({ isEndOfPage: false }) }}>
+                        <div style={{ transform: 'translate( 0px, -4px)', height: '1px'}}></div>
+                </Waypoint>
             </div>
         )
     }
