@@ -1,5 +1,5 @@
 @import './variables.style.scss';
-@import url('https://fonts.googleapis.com/css?family=Parisienne|Slabo+27px');
+@import url('https://fonts.googleapis.com/css?family=Parisienne|Slabo+13px');
 
 //default text color
 p, h1, h2, h3, h4 {
@@ -16,7 +16,7 @@ html {
 
 body {
     background-color: $ecruLight;
-    font-family: 'Slabo 27px', serif;
+    font-family: 'Slabo 13px', serif;
     font-size: 16px;
     line-height: 2em;
     height: 100%;

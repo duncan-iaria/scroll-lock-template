@@ -1,0 +1,16 @@
+.StackNavItem__waypoint {
+    height: 1px;
+    // background-color: yellow;
+}
+
+.top {
+    position: absolute;
+    top: 1px;
+    // transform: translateY(4px);
+}
+
+.bottom {
+    transform: translateY(-4px);
+    margin-bottom: -4px;
+    // background-color: red;
+}

@@ -10,7 +10,7 @@ import Activities from '../../pages/Activities/Activities';
 import Registry from '../../pages/Registry/Registry';
 import Lodging from '../../pages/Lodging/Lodging';
 import PageTransition from '../Transitions/PageTransition';
-import StackNavItem from '../StackNavItem';
+import StackNavItem from '../Transitions/StackNavItem';
 
 //STYLES
 import './ContentContainer.style.css';
@@ -41,8 +41,6 @@ class ContentContainer extends Component {
         // const scrollDir = scrollEvent.deltaY
         const { screenOrder, transitionDuration, isTransitioning } = this.state;
         const { history } = this.props;
-
-        // console.log( scrollDir );
 
         if( isTransitioning )
             return;
@@ -80,7 +78,6 @@ class ContentContainer extends Component {
     render() {
         const { location, history } = this.props;
         const { transitionClassName, transitionDuration } = this.state;
-        // console.log( transitionClassName );
         return (
             <div className="ContentContainer__container">
                 <Header/>
@@ -123,7 +120,7 @@ class ContentContainer extends Component {
                             />
 
                             <Route exact path={ routes.REGISTRY } render={ () =>
-                                    <StackNavItem 
+                                    <StackNavItem
                                         handleWheel={ this.onHandleScroll }
                                         orderIndex={ this.getOrderIndex( routes.REGISTRY ) }
                                     >
