@@ -2,6 +2,9 @@ import React from 'react';
 import { debounce, throttle } from 'lodash';
 import Waypoint from 'react-waypoint';
 
+// STYLES
+import './StackNavItem.style.css';
+
 class StackNavItem extends React.PureComponent {
     constructor( props ){
         super( props );
@@ -60,15 +63,15 @@ class StackNavItem extends React.PureComponent {
                 onTouchMove={ e => { this.handleTouch( e.touches[0].pageY ) } }
             >
                 <Waypoint 
-                    onEnter={ () => { this.setState({ isStartOfPage: true }) }}
+                    onEnter={ () => { this.setState({ isStartOfPage: true }, () => {console.log('start hit')} )}}
                     onLeave={ () => { this.setState({ isStartOfPage: false }) }}>
-                        <div style={{ transform: 'translate( 0px, 4px)', height: '1px'}}></div>
+                        <div className="StackNavItem__waypoint top"></div>
                 </Waypoint>
                 { children }
                 <Waypoint 
-                    onEnter={ () => { this.setState({ isEndOfPage: true }) }}
+                    onEnter={ () => { this.setState({ isEndOfPage: true }, () => {console.log('exit hit')} )}}
                     onLeave={ () => { this.setState({ isEndOfPage: false }) }}>
-                        <div style={{ transform: 'translate( 0px, -4px)', height: '1px'}}></div>
+                        <div className="StackNavItem__waypoint bottom"></div>
                 </Waypoint>
             </div>
         )

@@ -10,7 +10,7 @@ import Activities from '../../pages/Activities/Activities';
 import Registry from '../../pages/Registry/Registry';
 import Lodging from '../../pages/Lodging/Lodging';
 import PageTransition from '../Transitions/PageTransition';
-import StackNavItem from '../StackNavItem';
+import StackNavItem from '../Transitions/StackNavItem';
 
 //STYLES
 import './ContentContainer.style.css';
@@ -24,7 +24,7 @@ class ContentContainer extends Component {
         
         this.state = {
             isTransitioning: false,
-            transitionDuration: 900,
+            transitionDuration: 800,
             transitionClassName: 'next',
             screenOrder: [
                 routes.LANDING,
