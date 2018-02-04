@@ -5,6 +5,7 @@ import AnimatedText from '../../shared/AnimatedText/AnimatedText';
 
 //STYLES
 import './Landing.style.css';
+const logo = require( '../../../assets/images/WeddingLogo01.png' );
 
 //=========================
 // COMPONENT
@@ -13,12 +14,13 @@ const Landing = () => {
     return(
         <div className="landing__container">
             <div className="landing__title">
-                <AnimatedText>
+                {/* <AnimatedText>
                     Join us for a fall time celebration of love!
                     <br/>
                     <br/>                    
                     10 / 27 / 2018
-                </AnimatedText>
+                </AnimatedText> */}
+                <img src={ logo }/>
             </div>
             {/* <h1>LANDING PAGE</h1>
             <div>

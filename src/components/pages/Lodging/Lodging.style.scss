@@ -4,7 +4,8 @@
     width: 100%;
     // height: 100%;
     color: $ecruLight;
-    background-color: $plum;
+    background: linear-gradient( $lightPurple, $mediumPurple );
+    // background-color: $mediumPurple;
     display: flex;
     justify-content: center;
     overflow: auto;

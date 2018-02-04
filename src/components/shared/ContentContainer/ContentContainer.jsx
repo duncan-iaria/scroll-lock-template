@@ -78,7 +78,6 @@ class ContentContainer extends Component {
     render() {
         const { location, history } = this.props;
         const { transitionClassName, transitionDuration } = this.state;
-        // console.log( transitionClassName );
         return (
             <div className="ContentContainer__container">
                 <Header/>

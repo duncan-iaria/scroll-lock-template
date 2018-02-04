@@ -3,7 +3,8 @@
 .Activities__container {
     width: 100%;
     height: 100%;
-    background-color: $oxblood;
+    background: linear-gradient( $offWhite, $lightPurple );
+    // background-color: $lightPurple;
     overflow-y: auto;
 
     p {
