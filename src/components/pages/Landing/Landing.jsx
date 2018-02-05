@@ -22,6 +22,7 @@ const Landing = () => {
                 </AnimatedText> */}
                 <img src={ logo }/>
             </div>
+            <div className="landing__footer"/>
             {/* <h1>LANDING PAGE</h1>
             <div>
                 <div className="landing__color-block ecru"></div>
