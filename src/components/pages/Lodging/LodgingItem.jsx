@@ -7,14 +7,14 @@ import './Lodging.style.css';
 // COMPONENT
 //=========================
 const LodgingItem = ({ title, description, imgUrl }) => {
-    return(
+    return (
         <div className="lodging-item__container">
             <div className="lodging__title">
                 <h1>{title}</h1>
             </div>
             <div className="lodging-item__content">
                 <div className="lodging-image__container">
-                    <img src={ imgUrl } alt={ `image of ${title}`}/>
+                    <img src={imgUrl} alt={`${title}`} />
                 </div>
                 <div className="lodging__description">
                     <p>{description}</p>
