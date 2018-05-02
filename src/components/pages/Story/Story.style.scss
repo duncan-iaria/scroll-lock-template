@@ -1,0 +1,27 @@
+@import '../../styles/variables.style.scss';
+
+.Story__container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient( $lightPurple, $lightPink );
+    // background-color: $lightPurple;
+    overflow-y: auto;
+
+    .Story__title {
+        font-size: 1.33em;
+        margin-top: 100px;
+    }
+
+    .Story__footer {
+        position: absolute;
+        bottom: 0px;
+        height: 400px;
+        width: 100%;
+        z-index: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url( ../../../assets/images/TreeLineFooter01.svg);
+    }
+}

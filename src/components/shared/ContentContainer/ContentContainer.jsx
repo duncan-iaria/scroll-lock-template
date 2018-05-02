@@ -6,7 +6,7 @@ import routes from '../../../constants/route.constants';
 //COMPONENTS
 import Header from '../Header/Header';
 import Landing from '../../pages/Landing/Landing';
-import Activities from '../../pages/Activities/Activities';
+import Story from '../../pages/Story/Story';
 import Registry from '../../pages/Registry/Registry';
 import Lodging from '../../pages/Lodging/Lodging';
 import PageTransition from '../Transitions/PageTransition';
@@ -104,7 +104,7 @@ class ContentContainer extends Component {
                                         handleWheel={ this.onHandleScroll }
                                         orderIndex={ this.getOrderIndex( routes.ACTIVITIES ) }
                                     >
-                                        <Activities/>
+                                        <Story/>
                                     </StackNavItem>
                                 }
                             />
