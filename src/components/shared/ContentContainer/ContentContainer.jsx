@@ -19,9 +19,9 @@ import './ContentContainer.style.css';
 // COMPONENT
 //=========================
 class ContentContainer extends Component {
-    constructor( props ){
+    constructor(props) {
         super(props);
-        
+
         this.state = {
             isTransitioning: false,
             transitionDuration: 800,
@@ -33,54 +33,52 @@ class ContentContainer extends Component {
                 routes.REGISTRY
             ],
         }
-    
-        this.onHandleScroll = this.onHandleScroll.bind( this );
+
+        this.onHandleScroll = this.onHandleScroll.bind(this);
     }
 
-    onHandleScroll( scrollDir, orderIndex ){
-        // const scrollDir = scrollEvent.deltaY
+    onHandleScroll(scrollDir, orderIndex) {
         const { screenOrder, transitionDuration, isTransitioning } = this.state;
         const { history } = this.props;
 
-        if( isTransitioning )
+        if (isTransitioning)
             return;
 
-        if( scrollDir >= 0 ){
-            if( orderIndex < screenOrder.length - 1 ){
+        if (scrollDir >= 0) {
+            if (orderIndex < screenOrder.length - 1) {
                 // next route
                 this.setState({ transitionClassName: 'next' });
-                setTimeout( () => {history.push( screenOrder[ orderIndex + 1 ] )},  5 );
+                setTimeout(() => { history.push(screenOrder[orderIndex + 1]) }, 5);
             }
         }
-        else if ( scrollDir < 0 ){
-            if( orderIndex > 0 )
-            {                
+        else if (scrollDir < 0) {
+            if (orderIndex > 0) {
                 // prev route            
-                this.setState({ transitionClassName: 'prev' });                                         
-                setTimeout( () => {history.push( screenOrder[ orderIndex - 1 ] )},  5 );
+                this.setState({ transitionClassName: 'prev' });
+                setTimeout(() => { history.push(screenOrder[orderIndex - 1]) }, 5);
             }
         }
 
-        this.setState({ isTransitioning: true });  
-        setTimeout( () => { this.setState({ isTransitioning: false }) }, transitionDuration + 100 );  
+        this.setState({ isTransitioning: true });
+        setTimeout(() => { this.setState({ isTransitioning: false }) }, transitionDuration + 100);
     }
 
-    getOrderIndex( navItem ){
-        const tempIndex = this.state.screenOrder.indexOf( navItem );
-        if( tempIndex >= 0 ){
+    getOrderIndex(navItem) {
+        const tempIndex = this.state.screenOrder.indexOf(navItem);
+        if (tempIndex >= 0) {
             return tempIndex;
         }
 
-        console.log( 'no screen order was found for the nav item' );
+        console.log('no screen order was found for the nav item');
         return this.state.screenOrder.length - 1;
     }
 
     render() {
-        const { location, history } = this.props;
+        const { location } = this.props;
         const { transitionClassName, transitionDuration } = this.state;
         return (
             <div className="ContentContainer__container">
-                <Header/>
+                <Header />
 
                 <TransitionGroup className="page-container">
                     <PageTransition
@@ -89,50 +87,50 @@ class ContentContainer extends Component {
                         animationClass={transitionClassName}
                     >
                         <Switch location={location}>
-                            <Route exact path={ routes.LANDING } render={ () =>
-                                    <StackNavItem 
-                                        handleWheel={ this.onHandleScroll }
-                                        orderIndex={ this.getOrderIndex( routes.LANDING ) }
-                                    >
-                                        <Landing/>
-                                    </StackNavItem>
-                                }
-                            />
-                            
-                            <Route exact path={ routes.ACTIVITIES } render={ () =>
-                                    <StackNavItem 
-                                        handleWheel={ this.onHandleScroll }
-                                        orderIndex={ this.getOrderIndex( routes.ACTIVITIES ) }
-                                    >
-                                        <Story/>
-                                    </StackNavItem>
-                                }
+                            <Route exact path={routes.LANDING} render={() =>
+                                <StackNavItem
+                                    handleWheel={this.onHandleScroll}
+                                    orderIndex={this.getOrderIndex(routes.LANDING)}
+                                >
+                                    <Landing />
+                                </StackNavItem>
+                            }
                             />
 
-                            <Route exact path={ routes.LODGING } render={ () =>
-                                    <StackNavItem 
-                                        handleWheel={ this.onHandleScroll }
-                                        orderIndex={ this.getOrderIndex( routes.LODGING ) }
-                                    >
-                                        <Lodging/>
-                                    </StackNavItem>
-                                }
+                            <Route exact path={routes.ACTIVITIES} render={() =>
+                                <StackNavItem
+                                    handleWheel={this.onHandleScroll}
+                                    orderIndex={this.getOrderIndex(routes.ACTIVITIES)}
+                                >
+                                    <Story />
+                                </StackNavItem>
+                            }
                             />
 
-                            <Route exact path={ routes.REGISTRY } render={ () =>
-                                    <StackNavItem
-                                        handleWheel={ this.onHandleScroll }
-                                        orderIndex={ this.getOrderIndex( routes.REGISTRY ) }
-                                    >
-                                        <Registry/>
-                                    </StackNavItem>
-                                }
+                            <Route exact path={routes.LODGING} render={() =>
+                                <StackNavItem
+                                    handleWheel={this.onHandleScroll}
+                                    orderIndex={this.getOrderIndex(routes.LODGING)}
+                                >
+                                    <Lodging />
+                                </StackNavItem>
+                            }
                             />
 
-                            <Route render={ () => <div>Page not found...</div> }/>
+                            <Route exact path={routes.REGISTRY} render={() =>
+                                <StackNavItem
+                                    handleWheel={this.onHandleScroll}
+                                    orderIndex={this.getOrderIndex(routes.REGISTRY)}
+                                >
+                                    <Registry />
+                                </StackNavItem>
+                            }
+                            />
+
+                            <Route render={() => <div>Page not found...</div>} />
                         </Switch>
                     </PageTransition>
-                </TransitionGroup>               
+                </TransitionGroup>
             </div>
         );
     }
@@ -141,4 +139,4 @@ class ContentContainer extends Component {
 //=========================
 // EXPORTS
 //=========================
-export default withRouter( ContentContainer );
+export default withRouter(ContentContainer);

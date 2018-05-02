@@ -1,17 +1,13 @@
 import React from 'react';
-
-//COMPONENTS
-import AnimatedText from '../../shared/AnimatedText/AnimatedText';
-
 //STYLES
 import './Landing.style.css';
-const logo = require( '../../../assets/images/WeddingLogo01.png' );
+const logo = require('../../../assets/images/WeddingLogo01.png');
 
 //=========================
 // COMPONENT
 //=========================
 const Landing = () => {
-    return(
+    return (
         <div className="landing__container">
             <div className="landing__title">
                 {/* <AnimatedText>
@@ -20,9 +16,9 @@ const Landing = () => {
                     <br/>                    
                     10 / 27 / 2018
                 </AnimatedText> */}
-                <img src={ logo }/>
+                <img src={logo} alt={'Rhiannon and Duncan Logo'} />
             </div>
-            <div className="landing__footer"/>
+            <div className="landing__footer" />
             {/* <h1>LANDING PAGE</h1>
             <div>
                 <div className="landing__color-block ecru"></div>
