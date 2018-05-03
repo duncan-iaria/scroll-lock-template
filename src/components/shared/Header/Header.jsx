@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import routes from '../../../constants/route.constants';
 
 //STYLES
@@ -8,19 +8,20 @@ import './Header.style.css';
 //=========================
 // COMPONENT
 //=========================
-const Header = () => {
+const Header = ({ location: { pathname } }) => {
+  const tempLinkStyle = pathname === '/' ? 'nav-link landing' : 'nav-link';
   return (
     <div className="Header__container">
       <div className="nav-container">
-        <NavLink className="nav-link" to={routes.REGISTRY}>
+        <NavLink className={tempLinkStyle} to={routes.REGISTRY}>
           Registery
         </NavLink>
-        {'  —  '}
-        <NavLink className="nav-link" to={routes.ACTIVITIES}>
+        <span className={tempLinkStyle}>{'  —  '}</span>
+        <NavLink className={tempLinkStyle} to={routes.ACTIVITIES}>
           Activities
         </NavLink>
-        {'  —  '}
-        <NavLink className="nav-link" to={routes.LODGING}>
+        <span className={tempLinkStyle}>{'  —  '}</span>
+        <NavLink className={tempLinkStyle} to={routes.LODGING}>
           Lodging
         </NavLink>
       </div>
@@ -31,4 +32,4 @@ const Header = () => {
 //=========================
 // EXPORTS
 //=========================
-export default Header;
+export default withRouter(Header);
