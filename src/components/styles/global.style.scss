@@ -1,25 +1,29 @@
 @import './variables.style.scss';
-@import url('https://fonts.googleapis.com/css?family=Parisienne|Slabo+13px');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Slab');
 
 //default text color
-p, h1, h2, h3, h4 {
-    color: $darkBlue;
+p,
+h1,
+h2,
+h3,
+h4 {
+  color: $darkBlue;
 }
 
 #root {
-    height: 100%;
+  height: 100%;
 }
 
 html {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    background-color: $mediumPurple;
-    font-family: 'Slabo 13px', serif;
-    font-size: 16px;
-    line-height: 2em;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
+  background-color: $backgroundWhite;
+  font-family: 'Josefin Slab', serif;
+  font-size: 16px;
+  line-height: 2em;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
