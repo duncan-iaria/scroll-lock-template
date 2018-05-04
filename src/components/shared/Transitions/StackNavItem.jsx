@@ -11,6 +11,7 @@ class StackNavItem extends React.PureComponent {
 
     this.state = {
       touchStartY: null,
+      touchCurrentY: null,
       isStartOfPage: false,
       isEndOfPage: false,
     };
@@ -39,14 +40,22 @@ class StackNavItem extends React.PureComponent {
     this.setState({ touchStartY: tTouchPosY });
   }
 
-  handleTouch(tTouchPosY) {
-    console.log(tTouchPosY);
-    if (this.state.touchStartY - tTouchPosY > 0) {
-      //going up
-    } else {
-      //going down
-    }
+  handleTouch(tTouchPosY, tOrderIndex) {
+    this.setState({ touchCurrentY: tTouchPosY });
+    // if (this.state.touchStartY - tTouchPosY > 0) {
+    //   //going up
+    //   this.onHandleWheel(1, tOrderIndex);
+    // } else {
+    //   //going down
+    //   this.onHandleWheel(-1, tOrderIndex);
+    // }
   }
+
+  handleTouchEnd = tOrderIndex => {
+    const { touchCurrentY, touchStartY } = this.state;
+    this.onHandleWheel(touchStartY - touchCurrentY, tOrderIndex);
+    this.setState({ touchCurrentY: null });
+  };
 
   render() {
     const { children, orderIndex } = this.props;
@@ -56,10 +65,13 @@ class StackNavItem extends React.PureComponent {
         style={{ width: '100%', height: '100%', overflow: 'auto' }}
         onWheel={tEvent => this.onHandleWheel(tEvent.deltaY, orderIndex)}
         onTouchStart={e => {
-          this.handleTouchStart(e.touches[0].pageY);
+          this.handleTouchStart(e.touches[0].pageY, orderIndex);
         }}
         onTouchMove={e => {
-          this.handleTouch(e.touches[0].pageY);
+          this.handleTouch(e.touches[0].pageY, orderIndex);
+        }}
+        onTouchEnd={e => {
+          this.handleTouchEnd(orderIndex);
         }}
       >
         <Waypoint
