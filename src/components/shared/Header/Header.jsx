@@ -1,26 +1,36 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import routes from '../../../constants/route.constants';
 
-//STYLES
+// COMPONENTS
+import Navigation from './Navigation';
+
+// STYLES
 import './Header.style.css';
+
+const logo = require('../../../assets/images/logo/FoxHead.svg');
 
 //=========================
 // COMPONENT
 //=========================
-const Header = () => {
-    return (
-        <div className="Header__container">
-            <div className="nav-container">
-                <NavLink className="nav-link" to={ routes.REGISTRY }>Registery</NavLink>
-                <NavLink className="nav-link" to={ routes.ACTIVITIES }>Activities</NavLink>
-                <NavLink className="nav-link" to={ routes.LODGING }>Lodging</NavLink>                
-            </div>
-        </div>
-    )
-}
+const Header = ({ location: { pathname } }) => {
+  const tempStyle = pathname === '/' ? 'landing' : '';
+  return (
+    <div className={`Header__container ${tempStyle}`}>
+      <div style={{ flex: 1 }} />
+
+      {/* LOGO */}
+      <NavLink to={routes.LANDING}>
+        <img className={`Header__logo ${tempStyle}`} src={logo} alt={'fox head'} />
+      </NavLink>
+
+      {/* NAV */}
+      <Navigation navigationClass={`nav-link ${tempStyle}`} />
+    </div>
+  );
+};
 
 //=========================
 // EXPORTS
 //=========================
-export default Header;
+export default withRouter(Header);

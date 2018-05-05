@@ -1,10 +1,27 @@
 @import '../../styles/variables.style.scss';
 
-.Registry__container{
-    width: 100%;
-    height: 100%;
-    // background-color: $darkPurple;
-    background: linear-gradient( $mediumPurple, $darkPurple );
+.Registry__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  //   background: linear-gradient($lightPurple, $lightPink);
+  background-color: $backgroundWhite;
+  overflow-y: auto;
 
-    overflow-y: auto;
+  .Registry__title {
+    font-size: 1.33em;
+    margin-top: calc(#{$headerHeight} + 125px);
+  }
+
+  .Registry__text {
+    width: 550px;
+    margin-top: 50px;
+
+    p {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
 }
