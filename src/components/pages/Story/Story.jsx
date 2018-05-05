@@ -40,8 +40,8 @@ const Story = ({ history }) => {
             can’t wait to celebrate with their family and friends!
           </p>
         </AnimatedText>
-        <img src={tree} alt={'Tree Logo'} height={64} />
       </div>
+      <img src={tree} alt={'Tree Logo'} height={32} style={{ padding: '30px' }} />
       <div />
       {/* <div className="Story__footer"/> */}
     </div>
