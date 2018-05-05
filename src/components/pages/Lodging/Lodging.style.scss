@@ -1,79 +1,27 @@
 @import '../../styles/variables.style.scss';
 
 .Lodging__container {
-    width: 100%;
-    // height: 100%;
-    color: $ecruLight;
-    background: linear-gradient( $lightPurple, $mediumPurple );
-    // background-color: $mediumPurple;
-    display: flex;
-    justify-content: center;
-    overflow: auto;
-    
-    h1 {
-        color: $ecruLight;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  //   background: linear-gradient($lightPurple, $lightPink);
+  background-color: $backgroundWhite;
+  overflow-y: auto;
+
+  .Lodging__title {
+    font-size: 1.33em;
+    margin-top: 75px;
+  }
+
+  .Lodging__text {
+    width: 550px;
+    margin-top: 45px;
+
+    p {
+      padding-top: 15px;
+      padding-bottom: 15px;
     }
-
-    button {
-        border-radius: 8px;
-    }
-
-    .content {        
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 85%;
-        margin-top: 20px;
-    }
-
-    .lodging-item__container {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        width: 85%;
-    }
-
-    .lodging__title {
-        height: 50px;
-        margin: 50px 0 20px 0;
-    }
-
-    .lodging-item__content {
-        display: flex;
-        width: 100%;
-        flex-direction: row;
-    }
-
-    .lodging-image__container {
-        order: 0;
-        flex: 3;
-        background-color: red;
-        margin-bottom: 20px;
-        
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    }
-
-    .lodging__description {
-        flex: 2;
-        margin: 0 28px;
-        overflow: hidden;
-
-        ::-webkit-scrollbar { 
-            display: none; 
-        }
-        
-        p {
-            color: $ecruLight;
-        }
-    }
-
-    .lodging-item__footer {
-        display: flex;
-        align-items: flex-end;
-    }
-
+  }
 }

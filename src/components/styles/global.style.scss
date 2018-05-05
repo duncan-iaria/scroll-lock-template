@@ -7,7 +7,7 @@ h1,
 h2,
 h3,
 h4 {
-  color: $darkBlue;
+  color: $textDark;
 }
 
 #root {
@@ -16,13 +16,14 @@ h4 {
 
 html {
   height: 100%;
+  background-color: $backgroundWhite;
 }
 
 body {
   background-color: $backgroundWhite;
   font-family: 'Josefin Slab', serif;
-  font-size: 16px;
-  line-height: 2em;
+  font-size: 18px;
+  line-height: 1.66em;
   height: 100%;
   width: 100%;
   overflow: hidden;
