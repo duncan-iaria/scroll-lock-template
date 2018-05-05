@@ -26,13 +26,16 @@
     bottom: 0px;
     height: 40px;
     width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
     background-color: $backgroundDark;
   }
 
   .landing__footer_text {
     color: $backgroundWhite;
-    margin-left: 20px;
-    margin-top: 5px;
+    margin-left: 8px;
+    margin-right: 6px;
     letter-spacing: 0.333em;
   }
 
