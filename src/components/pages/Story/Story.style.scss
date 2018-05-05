@@ -1,6 +1,6 @@
 @import '../../styles/variables.style.scss';
 
-.Registry__container {
+.Story__container {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -10,12 +10,12 @@
   background-color: $backgroundWhite;
   overflow-y: auto;
 
-  .Registry__title {
+  .Story__title {
     font-size: 1.33em;
     margin-top: calc(#{$headerHeight} + 125px);
   }
 
-  .Registry__text {
+  .Story__text {
     width: 550px;
     margin-top: 50px;
 

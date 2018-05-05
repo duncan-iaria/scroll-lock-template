@@ -1,8 +1,27 @@
 @import '../../styles/variables.style.scss';
 
-.Lodging__container{
-    width: 100%;
-    height: 100%;
-    background-color: $plum;
-    // overflow: fix
+.Lodging__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  //   background: linear-gradient($lightPurple, $lightPink);
+  background-color: $backgroundWhite;
+  overflow-y: auto;
+
+  .Lodging__title {
+    font-size: 1.33em;
+    margin-top: calc(#{$headerHeight} + 125px);
+  }
+
+  .Lodging__text {
+    width: 550px;
+    margin-top: 50px;
+
+    p {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
 }
