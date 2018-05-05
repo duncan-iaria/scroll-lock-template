@@ -12,27 +12,16 @@
 
   .Story__title {
     font-size: 1.33em;
-    margin-top: 75px;
+    margin-top: calc(#{$headerHeight} + 125px);
   }
 
   .Story__text {
     width: 550px;
-    margin-top: 45px;
+    margin-top: 50px;
 
     p {
       padding-top: 15px;
       padding-bottom: 15px;
     }
-  }
-
-  .Story__footer {
-    position: absolute;
-    bottom: 0px;
-    height: 400px;
-    width: 100%;
-    z-index: 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url(../../../assets/images/TreeLineFooter01.svg);
   }
 }

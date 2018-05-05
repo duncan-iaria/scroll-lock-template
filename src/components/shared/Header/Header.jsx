@@ -5,23 +5,33 @@ import routes from '../../../constants/route.constants';
 //STYLES
 import './Header.style.css';
 
+const logo = require('../../../assets/images/logo/FoxHead.svg');
+
 //=========================
 // COMPONENT
 //=========================
 const Header = ({ location: { pathname } }) => {
-  const tempLinkStyle = pathname === '/' ? 'nav-link landing' : 'nav-link';
+  const tempStyle = pathname === '/' ? 'landing' : '';
   return (
-    <div className="Header__container">
+    <div className={`Header__container ${tempStyle}`}>
+      <div style={{ flex: 1 }} />
+
+      {/* LOGO */}
+      <NavLink to={routes.LANDING}>
+        <img className={`Header__logo ${tempStyle}`} src={logo} alt={'fox head'} />
+      </NavLink>
+
+      {/* NAV */}
       <div className="nav-container">
-        <NavLink className={tempLinkStyle} to={routes.REGISTRY}>
+        <NavLink className={`nav-link ${tempStyle}`} to={routes.REGISTRY}>
           Registery
         </NavLink>
-        <span className={tempLinkStyle}>{'  —  '}</span>
-        <NavLink className={tempLinkStyle} to={routes.ACTIVITIES}>
+        <span className={`nav-link ${tempStyle}`}>{'  —  '}</span>
+        <NavLink className={`nav-link ${tempStyle}`} to={routes.ACTIVITIES}>
           Activities
         </NavLink>
-        <span className={tempLinkStyle}>{'  —  '}</span>
-        <NavLink className={tempLinkStyle} to={routes.LODGING}>
+        <span className={`nav-link ${tempStyle}`}>{'  —  '}</span>
+        <NavLink className={`nav-link ${tempStyle}`} to={routes.LODGING}>
           Lodging
         </NavLink>
       </div>

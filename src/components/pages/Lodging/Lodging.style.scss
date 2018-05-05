@@ -12,12 +12,12 @@
 
   .Lodging__title {
     font-size: 1.33em;
-    margin-top: 75px;
+    margin-top: calc(#{$headerHeight} + 125px);
   }
 
   .Lodging__text {
     width: 550px;
-    margin-top: 45px;
+    margin-top: 50px;
 
     p {
       padding-top: 15px;
