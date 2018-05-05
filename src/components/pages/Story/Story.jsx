@@ -1,8 +1,9 @@
 import React from 'react';
-import AnimatedText from '../../shared/AnimatedText/AnimatedText';
+import { AnimatedText } from '../../shared';
 
 // STYLES
 import './Story.style.css';
+const tree = require('../../../assets/images/logo/Tree.svg');
 
 //=========================
 // COMPONENT
@@ -27,7 +28,10 @@ const Story = ({ history }) => {
           <p>
             Turns out the loud music wasn’t even coming from Duncan’s place, but being the great guy that he is, he
             wasn’t even offended at the accusation. In fact, he took the opportunity to invite the girls to one of his
-            shows (he was a drummer in General Oglethorpe and the Panhandlers).
+            shows (he was a drummer in{' '}
+            <a href="https://open.spotify.com/artist/4rgaE0vA85QwDXOBULC8TN?si=eR-niEG4Qea3WCyJI3_pBA">
+              General Oglethorpe and the Panhandlers
+            </a>).
           </p>
           <p>
             Rhiannon didn’t make it to this show, but as fate would have it, a few months later, they ran into each
@@ -36,6 +40,7 @@ const Story = ({ history }) => {
             can’t wait to celebrate with their family and friends!
           </p>
         </AnimatedText>
+        <img src={tree} alt={'Tree Logo'} height={64} />
       </div>
       <div />
       {/* <div className="Story__footer"/> */}

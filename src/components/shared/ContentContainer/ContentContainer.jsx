@@ -26,7 +26,7 @@ class ContentContainer extends Component {
       isTransitioning: false,
       transitionDuration: 800,
       transitionClassName: 'next',
-      screenOrder: [routes.LANDING, routes.ACTIVITIES, routes.LODGING, routes.REGISTRY],
+      screenOrder: [routes.LANDING, routes.STORY, routes.LODGING, routes.REGISTRY],
     };
 
     this.onHandleScroll = this.onHandleScroll.bind(this);
@@ -94,9 +94,9 @@ class ContentContainer extends Component {
 
               <Route
                 exact
-                path={routes.ACTIVITIES}
+                path={routes.STORY}
                 render={() => (
-                  <StackNavItem handleWheel={this.onHandleScroll} orderIndex={this.getOrderIndex(routes.ACTIVITIES)}>
+                  <StackNavItem handleWheel={this.onHandleScroll} orderIndex={this.getOrderIndex(routes.STORY)}>
                     <Story />
                   </StackNavItem>
                 )}

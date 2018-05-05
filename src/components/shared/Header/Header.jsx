@@ -2,7 +2,10 @@ import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import routes from '../../../constants/route.constants';
 
-//STYLES
+// COMPONENTS
+import Navigation from './Navigation';
+
+// STYLES
 import './Header.style.css';
 
 const logo = require('../../../assets/images/logo/FoxHead.svg');
@@ -22,19 +25,7 @@ const Header = ({ location: { pathname } }) => {
       </NavLink>
 
       {/* NAV */}
-      <div className="nav-container">
-        <NavLink className={`nav-link ${tempStyle}`} to={routes.REGISTRY}>
-          Registery
-        </NavLink>
-        <span className={`nav-link ${tempStyle}`}>{'  —  '}</span>
-        <NavLink className={`nav-link ${tempStyle}`} to={routes.ACTIVITIES}>
-          Activities
-        </NavLink>
-        <span className={`nav-link ${tempStyle}`}>{'  —  '}</span>
-        <NavLink className={`nav-link ${tempStyle}`} to={routes.LODGING}>
-          Lodging
-        </NavLink>
-      </div>
+      <Navigation navigationClass={`nav-link ${tempStyle}`} />
     </div>
   );
 };

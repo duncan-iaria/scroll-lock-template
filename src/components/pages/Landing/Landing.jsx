@@ -1,5 +1,6 @@
 import React from 'react';
 import AnimatedText from '../../shared/AnimatedText/AnimatedText';
+
 //STYLES
 import './Landing.style.css';
 const logo = require('../../../assets/images/logo/FullFox.svg');

@@ -10,6 +10,14 @@ h4 {
   color: $textDark;
 }
 
+a {
+  color: $sophieOrange;
+}
+
+a:visited {
+  color: $sophieOrange;
+}
+
 #root {
   height: 100%;
 }
