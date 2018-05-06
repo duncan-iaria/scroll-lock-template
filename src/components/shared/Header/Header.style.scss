@@ -1,4 +1,5 @@
 @import '../../styles/variables.style.scss';
+@import '../../styles/mixins.style.scss';
 
 .Header__container {
   display: flex;
@@ -28,6 +29,10 @@
     &.landing {
       opacity: 0;
     }
+
+    @include phone {
+      display: none;
+    }
   }
 
   .nav-container {
@@ -47,5 +52,9 @@
     &.landing {
       color: #333;
     }
+  }
+
+  @include phone {
+    flex-direction: column;
   }
 }
