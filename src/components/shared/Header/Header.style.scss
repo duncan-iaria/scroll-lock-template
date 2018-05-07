@@ -1,4 +1,5 @@
 @import '../../styles/variables.style.scss';
+@import '../../styles/mixins.style.scss';
 
 .Header__container {
   display: flex;
@@ -14,13 +15,21 @@
 
   transition: background-color 0.75s;
 
+  @include phone {
+    flex-direction: column;
+    justify-content: center;
+  }
+
   &.landing {
     background-color: transparent;
   }
 
+  .Header__logo-container {
+    display: flex;
+    justify-content: center;
+  }
+
   .Header__logo {
-    // position: absolute;
-    flex: 1;
     height: 100px;
     transform: translateY(17px);
     transition: opacity 0.75s;
@@ -28,24 +37,13 @@
     &.landing {
       opacity: 0;
     }
-  }
 
-  .nav-container {
-    display: flex;
-    justify-content: flex-end;
-    flex: 1;
-    font-size: 1.25em;
-    align-items: center;
-  }
-
-  .nav-link {
-    color: $backgroundWhite;
-    text-decoration: none;
-    transition: color 0.75s;
-    margin-right: 6px;
-
-    &.landing {
-      color: #333;
+    @include phone {
+      transform: translateY(35px);
     }
+  }
+
+  .Header__spacer {
+    flex: 1;
   }
 }

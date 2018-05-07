@@ -17,12 +17,14 @@ const Header = ({ location: { pathname } }) => {
   const tempStyle = pathname === '/' ? 'landing' : '';
   return (
     <div className={`Header__container ${tempStyle}`}>
-      <div style={{ flex: 1 }} />
+      <div className="Header__spacer" />
 
       {/* LOGO */}
-      <NavLink to={routes.LANDING}>
-        <img className={`Header__logo ${tempStyle}`} src={logo} alt={'fox head'} />
-      </NavLink>
+      <div className="Header__logo-container">
+        <NavLink to={routes.LANDING}>
+          <img className={`Header__logo ${tempStyle}`} src={logo} alt={'fox head'} />
+        </NavLink>
+      </div>
 
       {/* NAV */}
       <Navigation navigationClass={`nav-link ${tempStyle}`} />
