@@ -1,4 +1,5 @@
 @import '../../styles/variables.style.scss';
+@import '../../styles/mixins.style.scss';
 
 .Lodging__container {
   display: flex;
@@ -22,6 +23,14 @@
     p {
       padding-top: 15px;
       padding-bottom: 15px;
+    }
+
+    @include phablet {
+      width: 450px;
+    }
+
+    @include phone {
+      width: 350px;
     }
   }
 }

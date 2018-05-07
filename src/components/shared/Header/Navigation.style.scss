@@ -1,0 +1,39 @@
+@import '../../styles/variables.style.scss';
+@import '../../styles/mixins.style.scss';
+
+.Navigation__container {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+  font-size: 1.25em;
+  align-items: center;
+
+  @include phone {
+    order: -1;
+    justify-content: center;
+  }
+
+  .Navigation__link-container {
+    padding-right: 25px;
+
+    @include phone {
+      padding-top: 50px;
+      padding-right: 0px;
+    }
+  }
+
+  .nav-link {
+    color: $backgroundWhite;
+    text-decoration: none;
+    transition: color 0.75s;
+    margin-right: 6px;
+
+    &.landing {
+      color: #333;
+    }
+
+    @include phone {
+      margin-right: 0px;
+    }
+  }
+}
