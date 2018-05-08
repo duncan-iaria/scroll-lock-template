@@ -14,7 +14,7 @@ const Landing = () => {
     <div className="landing__container">
       <div className="landing__title">
         <AnimatedText>
-          <img src={logo} alt={'Rhiannon and Duncan Logo'} height={500} />
+          <img src={logo} alt={'Rhiannon and Duncan Logo'} className="landing__logo" />
         </AnimatedText>
       </div>
       <div className="landing__footer">
