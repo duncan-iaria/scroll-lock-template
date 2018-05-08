@@ -9,7 +9,6 @@
   justify-content: center;
   flex-direction: column;
 
-  //   background: linear-gradient($offWhite, $lightPink);
   overflow-x: hidden;
   // background-repeat: no-repeat;
   // background-size: cover;
@@ -17,9 +16,30 @@
   // background-image: url( 'https://images.unsplash.com/photo-1428452932365-4e7e1c4b0987?auto=format&fit=crop&w=1650&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D' );
 
   .landing__title {
-    transform: translateY(-50px);
+    transform: translateY(-20px);
     align-self: center;
     z-index: 10;
+  }
+
+  .landing__logo {
+    height: 500px;
+
+    @include desktop {
+      height: 500px;
+    }
+
+    @include tablet {
+      height: 450px;
+    }
+
+    @include phablet {
+      transform: translateY(-20px);
+      height: 400px;
+    }
+
+    @include phone {
+      height: 300px;
+    }
   }
 
   .landing__footer {
