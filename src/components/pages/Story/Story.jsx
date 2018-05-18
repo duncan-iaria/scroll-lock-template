@@ -35,7 +35,7 @@ const Story = ({ history }) => {
           </p>
           <p>
             Rhiannon didn’t make it to this show, but as fate would have it, a few months later, they ran into each
-            other at a popular spot downtime on Cinco de Mayo. The rest, as they say, is history! Along the way, they
+            other at a popular spot downtown on Cinco de Mayo. The rest, as they say, is history! Along the way, they
             have lived in Chapel Hill, NC (where they adopted their darling dog Sophie) and now in Atlanta, GA. They
             can’t wait to celebrate with their family and friends!
           </p>

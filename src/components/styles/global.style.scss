@@ -6,7 +6,8 @@ p,
 h1,
 h2,
 h3,
-h4 {
+h4,
+input {
   color: $textDark;
 }
 
@@ -25,6 +26,10 @@ a:visited {
 html {
   height: 100%;
   background-color: $backgroundWhite;
+}
+
+input {
+  font-family: 'Josefin Slab', serif;
 }
 
 body {

@@ -1,9 +1,9 @@
 import React from 'react';
-// import LodgingItem from './LodgingItem';
 import { AnimatedText } from '../../shared';
 
 // STYLES
 import './Lodging.style.css';
+const tree = require('../../../assets/images/logo/Tree.svg');
 
 //=========================
 // COMPONENT
@@ -28,7 +28,7 @@ const Lodging = () => {
         </div>
         <div />
       </AnimatedText>
-      {/* <div className="Lodging__footer"/> */}
+      <img src={tree} alt={'Tree Logo'} height={32} style={{ padding: '30px' }} />
     </div>
   );
 };

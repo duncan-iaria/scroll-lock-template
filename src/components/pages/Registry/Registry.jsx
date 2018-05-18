@@ -3,6 +3,7 @@ import { AnimatedText } from '../../shared';
 
 // STYLES
 import './Registry.style.css';
+const tree = require('../../../assets/images/logo/Tree.svg');
 
 //=========================
 // COMPONENT
@@ -22,6 +23,7 @@ const Registry = () => {
           </p>
         </div>
       </AnimatedText>
+      <img src={tree} alt={'Tree Logo'} height={32} style={{ padding: '30px' }} />
     </div>
   );
 };
