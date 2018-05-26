@@ -3,7 +3,8 @@ import { AnimatedText } from '../../shared';
 
 // STYLES
 import './Lodging.style.css';
-const tree = require('../../../assets/images/logo/Tree.svg');
+const mountain = require('../../../assets/images/logo/ThinMountains.svg');
+const flourish = require('../../../assets/images/logo/Flourish.svg');
 
 //=========================
 // COMPONENT
@@ -14,6 +15,7 @@ const Lodging = () => {
       <div className="Lodging__title">
         <h1>Lodging</h1>
       </div>
+      <img className="spacer" src={flourish} alt={'Spacer Flourish'} />
       <AnimatedText>
         <div className="Lodging__text">
           <p>
@@ -28,7 +30,7 @@ const Lodging = () => {
         </div>
         <div />
       </AnimatedText>
-      <img src={tree} alt={'Tree Logo'} height={32} style={{ padding: '30px' }} />
+      <img src={mountain} alt={'Mountain Logo'} height={32} style={{ padding: '30px' }} />
     </div>
   );
 };

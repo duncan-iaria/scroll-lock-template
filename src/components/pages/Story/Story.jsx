@@ -4,6 +4,7 @@ import { AnimatedText } from '../../shared';
 // STYLES
 import './Story.style.css';
 const tree = require('../../../assets/images/logo/Tree.svg');
+const flourish = require('../../../assets/images/logo/Flourish.svg');
 
 //=========================
 // COMPONENT
@@ -17,6 +18,7 @@ const Story = ({ history }) => {
       <div className="Story__title">
         <h1>Our Story</h1>
       </div>
+      <img className="spacer" src={flourish} alt={'Spacer Flourish'} />
       <div className="Story__text">
         <AnimatedText>
           <p>
@@ -43,7 +45,6 @@ const Story = ({ history }) => {
       </div>
       <img src={tree} alt={'Tree Logo'} height={32} style={{ padding: '30px' }} />
       <div />
-      {/* <div className="Story__footer"/> */}
     </div>
   );
 };
