@@ -24,6 +24,19 @@ class RSVP extends React.Component {
   }
 
   updateField = tEvent => {
+    tEvent.preventDefault();
+    const { name, value } = tEvent.target;
+    if (value === 'true' || value === 'false') {
+      this.setState({
+        [name]: !(value === 'true'),
+      });
+    } else {
+      this.setState({
+        [name]: value,
+      });
+    }
+    console.log('tEvent:', tEvent);
+    console.log('target:', tEvent.target);
     console.log(tEvent.target.name);
     console.log(tEvent.target.value);
   };

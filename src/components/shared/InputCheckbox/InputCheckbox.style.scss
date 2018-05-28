@@ -1,0 +1,29 @@
+@import '../../styles/variables.style.scss';
+@import '../../styles/mixins.style.scss';
+
+.InputCheckbox__wrapper {
+  display: flex;
+  margin-right: 12px;
+  margin-bottom: 6px;
+
+  .selected {
+    background-color: $sophieOrange;
+    // background-color: $treeGreen;
+  }
+
+  .InputCheckbox__label {
+    display: flex;
+    align-items: flex-end;
+    margin-left: 6px;
+    line-height: 1em;
+  }
+
+  button {
+    outline: none;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    border: 3px solid $textDark;
+    transition: background-color 250ms;
+  }
+}

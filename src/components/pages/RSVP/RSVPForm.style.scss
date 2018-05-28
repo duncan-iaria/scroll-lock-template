@@ -2,7 +2,15 @@
 @import '../../styles/mixins.style.scss';
 
 .RSVPForm__form {
+  .RSVPForm__input-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    margin-bottom: 8px;
+  }
+
   input {
+    font-size: 18px;
     outline: none;
     color: $textDark;
     height: 30px;
@@ -17,13 +25,22 @@
   }
 
   input[type='text'] {
+    padding: 0px 8px;
     width: 100%;
     border: 3px solid $textDark;
     // background-color: $backgroundWhite;
   }
 
   input[type='submit'] {
+    padding-top: 4px;
+    cursor: pointer;
     height: 36px;
     min-width: 100px;
+    transition: background-color 250ms, color 250ms;
+
+    &:hover {
+      color: white;
+      background-color: $treeGreen;
+    }
   }
 }
