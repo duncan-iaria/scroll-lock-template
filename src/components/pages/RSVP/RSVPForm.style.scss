@@ -31,6 +31,36 @@
     // background-color: $backgroundWhite;
   }
 
+  .input__select {
+    padding: 0px 8px;
+    width: 100%;
+    border: 3px solid $textDark;
+    font-size: 18px;
+    outline: none;
+    color: $textDark;
+    height: 30px;
+  }
+
+  .InputSelect__options {
+    position: absolute;
+    box-sizing: border-box;
+    top: 170px;
+    width: 100%;
+    background-color: white;
+    border-bottom: 3px solid $textDark;
+    border-right: 3px solid $textDark;
+    border-left: 3px solid $textDark;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .InputSelect__options-item {
+    width: 100%;
+  }
+
   input[type='submit'] {
     padding-top: 4px;
     cursor: pointer;
