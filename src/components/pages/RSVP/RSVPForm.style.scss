@@ -3,6 +3,7 @@
 
 .RSVPForm__form {
   .RSVPForm__input-row {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     flex: 1;
@@ -32,6 +33,7 @@
   }
 
   .input__select {
+    position: relative;
     padding: 0px 8px;
     width: 100%;
     border: 3px solid $textDark;
@@ -44,7 +46,7 @@
   .InputSelect__options {
     position: absolute;
     box-sizing: border-box;
-    top: 170px;
+    top: 0px;
     width: 100%;
     background-color: white;
     border-bottom: 3px solid $textDark;
@@ -59,6 +61,20 @@
 
   .InputSelect__options-item {
     width: 100%;
+    padding: 2px 6px;
+    cursor: pointer;
+    box-sizing: border-box;
+
+    transition: color 200ms, background-color 250ms;
+
+    &:nth-child(odd) {
+      background-color: lighten($backgroundWhite, 3%);
+    }
+
+    &:hover {
+      color: white;
+      background-color: $sophieOrange;
+    }
   }
 
   input[type='submit'] {

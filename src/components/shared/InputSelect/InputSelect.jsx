@@ -6,11 +6,12 @@ class InputSelect extends React.Component {
 
     this.state = {
       isActive: false,
+      options: [{ id: 1, name: 'duncan' }, { id: 2, name: 'rhi' }, { id: 3, name: 'nick' }],
     };
   }
 
   render() {
-    const { isActive } = this.state;
+    const { isActive, options } = this.state;
     const { onUpdateField, name, value } = this.props;
 
     const optionsStyle = isActive ? 'active' : '';
@@ -30,10 +31,9 @@ class InputSelect extends React.Component {
         placeholder="Your name, please..."
       />,
       <div className={`InputSelect__options ${optionsStyle}`}>
-        <div className="InputSelect-options-item">Test</div>
-        <div className="InputSelect-options-item">Test</div>
-        <div className="InputSelect-options-item">Test</div>
-        <div className="InputSelect-options-item">Test</div>
+        {options.map(tempOption => {
+          return <div className="InputSelect__options-item">{tempOption.name}</div>;
+        })}
       </div>,
     ];
   }
