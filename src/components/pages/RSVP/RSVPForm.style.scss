@@ -46,7 +46,8 @@
   .InputSelect__options {
     position: absolute;
     box-sizing: border-box;
-    top: 0px;
+    z-index: 10;
+    top: 33px;
     width: 100%;
     background-color: white;
     border-bottom: 3px solid $textDark;
