@@ -7,12 +7,12 @@ import './RSVPForm.style.css';
 //=========================
 // COMPONENT
 //=========================
-const RSVPForm = ({ name, isAttending, isPlusOne, onUpdateField, onSubmit }) => {
+const RSVPForm = ({ name, isAttending, isPlusOne, onUpdateField, onSubmit, isLoading }) => {
   return (
     <form onSubmit={onSubmit} className="RSVPForm__form">
       <div>Hello, rsvp form</div>
       <div className="RSVPForm__input-row">
-        <InputSelect name="name" value={name} onUpdateField={onUpdateField} />
+        <InputSelect name="name" value={name} onUpdateField={onUpdateField} isLoading={isLoading} />
       </div>
       <div className="RSVPForm__input-row">
         <InputCheckbox name="isAttending" label="Attending?" value={isAttending} onClick={onUpdateField} />

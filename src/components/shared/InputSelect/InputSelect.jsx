@@ -12,30 +12,33 @@ class InputSelect extends React.Component {
 
   render() {
     const { isActive, options } = this.state;
-    const { onUpdateField, name, value } = this.props;
+    const { onUpdateField, name, value, isLoading } = this.props;
 
     const optionsStyle = isActive ? 'active' : '';
-    return [
-      <input
-        autoComplete="off"
-        type="text"
-        name={name}
-        value={value}
-        onChange={onUpdateField}
-        onClick={() => {
-          this.setState({ isActive: true });
-        }}
-        onBlur={() => {
-          this.setState({ isActive: false });
-        }}
-        placeholder="Your name, please..."
-      />,
-      <div className={`InputSelect__options ${optionsStyle}`}>
-        {options.map(tempOption => {
-          return <div className="InputSelect__options-item">{tempOption.name}</div>;
-        })}
-      </div>,
-    ];
+    return (
+      <div style={{ width: '100%', boxSizing: 'border-box' }}>
+        {isLoading && <div>loading...</div>}
+        <input
+          autoComplete="off"
+          type="text"
+          name={name}
+          value={value}
+          onChange={onUpdateField}
+          onClick={() => {
+            this.setState({ isActive: true });
+          }}
+          onBlur={() => {
+            this.setState({ isActive: false });
+          }}
+          placeholder="Your name, please..."
+        />
+        <div className={`InputSelect__options ${optionsStyle}`}>
+          {options.map(tempOption => {
+            return <div className="InputSelect__options-item">{tempOption.name}</div>;
+          })}
+        </div>
+      </div>
+    );
   }
 }
 

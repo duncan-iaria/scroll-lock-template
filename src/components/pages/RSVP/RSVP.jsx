@@ -1,4 +1,5 @@
 import React from 'react';
+import { debounce } from 'lodash';
 
 // COMPONENTS
 import { AnimatedText } from '../../shared';
@@ -9,9 +10,6 @@ import './RSVP.style.css';
 const mountain = require('../../../assets/images/logo/ThinMountains.svg');
 const flourish = require('../../../assets/images/logo/Flourish.svg');
 
-//=========================
-// COMPONENT
-//=========================
 class RSVP extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +18,10 @@ class RSVP extends React.Component {
       name: '',
       isAttending: false,
       isPlusOne: false,
+      isLoading: false,
     };
+
+    this.getGuest = debounce(this.getGuest, 250);
   }
 
   updateField = tEvent => {
@@ -34,11 +35,16 @@ class RSVP extends React.Component {
       this.setState({
         [name]: value,
       });
+
+      if (name === 'name') {
+        this.getGuest();
+      }
     }
-    console.log('tEvent:', tEvent);
-    console.log('target:', tEvent.target);
-    console.log(tEvent.target.name);
-    console.log(tEvent.target.value);
+  };
+
+  getGuest = () => {
+    const { name } = this.state;
+    this.setState({ isLoading: true });
   };
 
   submitRSVP = tEvent => {
@@ -47,9 +53,8 @@ class RSVP extends React.Component {
     console.log(tEvent.target.value);
   };
 
-  // VIEW
   render() {
-    const { name, isAttending, isPlusOne } = this.state;
+    const { name, isAttending, isPlusOne, isLoading } = this.state;
     return (
       <div className="RSVP__container">
         <div className="RSVP__title">
@@ -65,6 +70,7 @@ class RSVP extends React.Component {
               isPlusOne={isPlusOne}
               onUpdateField={this.updateField}
               onSubmit={this.submitRSVP}
+              isLoading={isLoading}
             />
           </div>
         </AnimatedText>
@@ -73,7 +79,5 @@ class RSVP extends React.Component {
     );
   }
 }
-//=========================
-// EXPORTS
-//=========================
+
 export default RSVP;
