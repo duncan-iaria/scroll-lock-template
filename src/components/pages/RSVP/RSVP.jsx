@@ -1,5 +1,6 @@
 import React from 'react';
 import { debounce } from 'lodash';
+import { searchGuests } from '../../../api/GuestAPI';
 
 // COMPONENTS
 import { AnimatedText } from '../../shared';
@@ -44,6 +45,7 @@ class RSVP extends React.Component {
 
   getGuest = () => {
     const { name } = this.state;
+    searchGuests(name);
     this.setState({ isLoading: true });
   };
 
