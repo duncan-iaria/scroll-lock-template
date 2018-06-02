@@ -46,15 +46,19 @@ class RSVP extends React.Component {
 
   getGuest = async () => {
     const { name } = this.state;
+    let guests;
 
     this.setState({ isLoading: true });
     const tempResponse = await searchGuests(name);
-    const guests = tempResponse.map(tempGuest => {
-      return {
-        id: tempGuest._id,
-        name: tempGuest.displayName,
-      };
-    });
+    console.log(tempResponse);
+    if (tempResponse) {
+      guests = tempResponse.map(tempGuest => {
+        return {
+          id: tempGuest._id,
+          name: tempGuest.displayName,
+        };
+      });
+    }
 
     this.setState({ guests, isLoading: false });
     console.log(tempResponse);
