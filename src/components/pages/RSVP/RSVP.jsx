@@ -20,6 +20,7 @@ class RSVP extends React.Component {
       isAttending: false,
       isPlusOne: false,
       isLoading: false,
+      guests: [],
     };
 
     this.getGuest = debounce(this.getGuest, 250);
@@ -43,10 +44,20 @@ class RSVP extends React.Component {
     }
   };
 
-  getGuest = () => {
+  getGuest = async () => {
     const { name } = this.state;
-    searchGuests(name);
+
     this.setState({ isLoading: true });
+    const tempResponse = await searchGuests(name);
+    const guests = tempResponse.map(tempGuest => {
+      return {
+        id: tempGuest._id,
+        name: tempGuest.displayName,
+      };
+    });
+
+    this.setState({ guests, isLoading: false });
+    console.log(tempResponse);
   };
 
   submitRSVP = tEvent => {
@@ -56,7 +67,7 @@ class RSVP extends React.Component {
   };
 
   render() {
-    const { name, isAttending, isPlusOne, isLoading } = this.state;
+    const { name, guests, isAttending, isPlusOne, isLoading } = this.state;
     return (
       <div className="RSVP__container">
         <div className="RSVP__title">
@@ -68,6 +79,7 @@ class RSVP extends React.Component {
             <p>We'd love to have you...</p>
             <RSVPForm
               name={name}
+              guests={guests}
               isAttending={isAttending}
               isPlusOne={isPlusOne}
               onUpdateField={this.updateField}
