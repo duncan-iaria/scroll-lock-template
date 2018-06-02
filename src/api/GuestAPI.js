@@ -9,12 +9,12 @@ export const searchGuests = async tGuestSearch => {
   try {
     tempResponse = await fetch(tempUrl);
     tempResponse = await tempResponse.json();
-  }
-  catch (tError) {
-    console.log(tError);
+    const { data, error } = tempResponse;
+    tempResponse = data;
+  } catch (tError) {
+    console.error('error searching for guest: ', tError);
     tempResponse = [];
-  };
+  }
 
-  console.log('api response: ', tempResponse);
   return tempResponse;
 };
