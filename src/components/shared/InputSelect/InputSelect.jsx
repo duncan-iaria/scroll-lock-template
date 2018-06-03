@@ -6,17 +6,11 @@ import InputSelectedItem from './';
 class InputSelect extends React.Component {
   constructor(props) {
     super(props);
-    console.log('input reconstructed');
-    console.log(('props:', props));
     this.state = {
       isActive: false,
       isLoading: false,
       value: '',
-      options: [
-        { id: 1, name: 'duncan', isAttending: false, isPlusOne: true },
-        { id: 2, name: 'rhi', isAttending: true, isPlusOne: true },
-        { id: 3, name: 'nick', isAttending: false, isPlusOne: false },
-      ],
+      options: this.props.initialOptions || [],
     };
   }
 
@@ -44,7 +38,6 @@ class InputSelect extends React.Component {
   onSelectItem = tItem => {
     const { selectItem } = this.props;
     selectItem(tItem);
-    // console.log('selected item: ', tItem);
     this.setState({ isActive: false, value: tItem.name });
   };
 
@@ -59,8 +52,13 @@ class InputSelect extends React.Component {
     const { selectedOption, placeholder, value, clearSelection } = this.props;
     return selectedOption ? (
       <div className="InputSelect__selected-item-container">
-        <div className="InputSelect__selected-item">
-          {selectedOption.name}
+        <div
+          className="InputSelect__selected-item"
+          onClick={() => {
+            this.setState({ isActive: true });
+          }}
+        >
+          {selectedOption.name || selectedOption.value}
           <div className="InputSelect__clear-icon" onClick={clearSelection}>
             X
           </div>
@@ -84,6 +82,7 @@ class InputSelect extends React.Component {
   render() {
     const { isActive, options, value } = this.state;
     const { placeholder, isLoading, selectedOption } = this.props;
+    const tempOptions = options || this.getOptions();
     const optionsStyle = isActive ? 'active' : '';
     const inputArea = this.getInputArea();
 
@@ -92,7 +91,7 @@ class InputSelect extends React.Component {
         {isLoading && <div className="InputSelect__loading-icon">·</div>}
         {inputArea}
         <div className={`InputSelect__options ${optionsStyle}`}>
-          {options && options.length > 0 ? (
+          {tempOptions && tempOptions.length > 0 ? (
             options.map(tempOption => {
               return (
                 <div

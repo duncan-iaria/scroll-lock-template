@@ -1,7 +1,7 @@
 import React from 'react';
 import { debounce } from 'lodash';
 import { searchGuests } from '../../../api/GuestAPI';
-import { InputCheckbox, InputSelect } from '../../shared/';
+import { InputCheckbox, InputSelect, DropdownSelect } from '../../shared/';
 
 // STYLES
 import './RSVPForm.style.css';
@@ -12,8 +12,15 @@ class RSVPForm extends React.Component {
     console.log('rvsp form reconstruct');
     this.state = {
       selectedGuest: null,
+      isRSVP: false,
       isLoading: false,
     };
+
+    this.guests = [
+      { id: 1, name: 'duncan', isAttending: false, isPlusOne: true, maxGuests: 4, guestsAttending: 1 },
+      { id: 2, name: 'rhi', isAttending: false, isPlusOne: true, maxGuests: 2, guestsAttending: 1 },
+      { id: 3, name: 'nick', isAttending: false, isPlusOne: false, maxGuests: 1, guestsAttending: 1 },
+    ];
 
     this.getGuest = debounce(this.getGuest, 250);
   }
@@ -59,25 +66,42 @@ class RSVPForm extends React.Component {
     console.log(tempResponse);
   };
 
+  getMaxGuests = maxGuests => {
+    let guestArray = [];
+    for (let i = 1; i < maxGuests; i++) {
+      guestArray.push({ name: i, value: i });
+    }
+    console.log('max guests array:', guestArray);
+    return guestArray;
+  };
+
   onSelectGuest = tGuest => {
     console.log('top level select: ', tGuest);
     this.setState({ selectedGuest: tGuest });
+  };
+
+  selectGuestAttendance = () => {
+    console.log('hey guest attendance selected');
   };
 
   clearGuest = () => {
     this.setState({ selectedGuest: null });
   };
 
-  onSubmit = () => {
-    console.log('form submitted');
+  onSubmit = tEvent => {
+    const { selectedGuest } = this.state;
+    tEvent.preventDefault();
+    console.log('current guest info', selectedGuest);
+    this.setState({ isRSVP: true });
   };
 
   render() {
-    const { isAttending, isPlusOne, selectedGuest } = this.state;
+    const { selectedGuest, isRSVP } = this.state;
     return (
       <form onSubmit={this.onSubmit} className="RSVPForm__form">
         <div className="RSVPForm__input-row">
           <InputSelect
+            initialOptions={this.guests}
             getOptions={this.getGuest}
             selectItem={this.onSelectGuest}
             selectedOption={selectedGuest}
@@ -101,10 +125,11 @@ class RSVPForm extends React.Component {
                 label="Regretfully Decline."
                 value={!selectedGuest.isAttending}
                 onClick={tEvent => {
-                  tEvent.target.value = !isAttending;
+                  tEvent.target.value = !selectedGuest.isAttending;
                   this.updateField(tEvent);
                 }}
               />
+              <DropdownSelect selectValue={2} />
               {selectedGuest.isPlusOne ? (
                 <InputCheckbox
                   name="isPlusOne"

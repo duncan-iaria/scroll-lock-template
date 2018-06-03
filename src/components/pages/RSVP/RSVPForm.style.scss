@@ -31,10 +31,8 @@
   }
 
   input[type='text'] {
-    // padding: 0px 8px;
+    padding: 2px 0px;
     width: 100%;
-    // border: 3px solid $textDark;
-    // background-color: $backgroundWhite;
   }
 
   .input__select {
@@ -59,8 +57,8 @@
 
   .InputSelect__options {
     position: absolute;
-    // padding: 0px 8px;
-    // box-sizing: border-box;
+    left: 0px;
+    box-sizing: border-box;
     z-index: 10;
     width: 100%;
     background-color: white;
@@ -109,6 +107,11 @@
     margin-left: 6px;
     border: 1px solid $textDark;
     border-radius: 4px;
+    padding: 2px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .InputSelect__info {
