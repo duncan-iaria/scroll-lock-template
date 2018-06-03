@@ -1,13 +1,13 @@
 {
   "name": "scroll-lock-template",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "lodash": "^4.17.4",
-    "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.2",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "react-onclickoutside": "^6.7.1",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "react-transition-group": "^2.2.1",
@@ -22,5 +22,14 @@
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "printWidth": 120
+  },
+  "devDependencies": {
+    "node-sass-chokidar": "^1.3.0"
   }
 }

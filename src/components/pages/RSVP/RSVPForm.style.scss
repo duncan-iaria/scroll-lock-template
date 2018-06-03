@@ -26,7 +26,7 @@
   }
 
   input[type='text'] {
-    // padding: 0px 8px;
+    padding: 0px 8px;
     width: 100%;
     border: 3px solid $textDark;
     // background-color: $backgroundWhite;
@@ -56,13 +56,15 @@
     display: none;
 
     &.active {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
     }
   }
 
   .InputSelect__options-item {
     width: 100%;
-    padding: 2px 6px;
+    padding: 2px 2px;
     cursor: pointer;
     box-sizing: border-box;
     transition: color 200ms, background-color 250ms;
@@ -77,6 +79,26 @@
     }
   }
 
+  .InputSelect__info {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-content: center;
+    padding: 8px;
+  }
+
+  .InputSelect__loading-icon {
+    font-size: 72px;
+    color: $sophieOrange;
+    position: absolute;
+    right: 0px;
+    top: 6px;
+    animation-name: loader;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-duration: 500ms;
+  }
+
   input[type='submit'] {
     padding-top: 4px;
     cursor: pointer;
@@ -89,5 +111,27 @@
       color: white;
       background-color: $treeGreen;
     }
+  }
+}
+
+@keyframes loader {
+  0% {
+    transform: translateX(0px);
+  }
+
+  40% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: translateX(10px) scale(1.5, 0.5);
+  }
+
+  60% {
+    transform: scale(1, 1);
+  }
+
+  100% {
+    transform: translateX(-20px);
   }
 }

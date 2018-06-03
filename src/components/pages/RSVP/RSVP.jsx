@@ -15,12 +15,10 @@ class RSVP extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 0,
-      name: '',
+      selectedGuest: null,
       isAttending: false,
       isPlusOne: false,
       isLoading: false,
-      guests: [],
     };
 
     this.getGuest = debounce(this.getGuest, 250);
@@ -64,6 +62,11 @@ class RSVP extends React.Component {
     console.log(tempResponse);
   };
 
+  onSelectGuest = tGuest => {
+    console.log(tGuest);
+    this.setState({ selectedGuest: tGuest });
+  };
+
   submitRSVP = tEvent => {
     tEvent.preventDefault();
     console.log(tEvent.target.name);
@@ -71,7 +74,7 @@ class RSVP extends React.Component {
   };
 
   render() {
-    const { name, guests, isAttending, isPlusOne, isLoading } = this.state;
+    const { isAttending, isPlusOne, isLoading } = this.state;
     return (
       <div className="RSVP__container">
         <div className="RSVP__title">
@@ -82,12 +85,12 @@ class RSVP extends React.Component {
           <div className="RSVP__text">
             <p>We'd love to have you...</p>
             <RSVPForm
-              name={name}
-              guests={guests}
               isAttending={isAttending}
               isPlusOne={isPlusOne}
               onUpdateField={this.updateField}
               onSubmit={this.submitRSVP}
+              getOptions={this.getGuest}
+              onSelectGuest={this.onSelectGuest}
               isLoading={isLoading}
             />
           </div>
