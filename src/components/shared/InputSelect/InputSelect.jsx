@@ -6,21 +6,22 @@ import InputSelectedItem from './';
 class InputSelect extends React.Component {
   constructor(props) {
     super(props);
-
+    console.log('input reconstructed');
+    console.log(('props:', props));
     this.state = {
-      selectedItem: null,
       isActive: false,
       isLoading: false,
       value: '',
       options: [
-        { id: 1, name: 'duncan', isAttending: false },
-        { id: 2, name: 'rhi', isAttending: true },
-        { id: 3, name: 'nick', isAttending: false },
+        { id: 1, name: 'duncan', isAttending: false, isPlusOne: true },
+        { id: 2, name: 'rhi', isAttending: true, isPlusOne: true },
+        { id: 3, name: 'nick', isAttending: false, isPlusOne: false },
       ],
     };
   }
 
   handleClickOutside = evt => {
+    console.log('hey im outside');
     this.setState({ isActive: false });
   };
 
@@ -43,32 +44,53 @@ class InputSelect extends React.Component {
   onSelectItem = tItem => {
     const { selectItem } = this.props;
     selectItem(tItem);
-    this.setState({ isActive: false, value: tItem.name, selectedItem: tItem });
+    // console.log('selected item: ', tItem);
+    this.setState({ isActive: false, value: tItem.name });
+  };
+
+  onClearSelected = () => {
+    const { clearSelected } = this.props;
+    console.log('on cleared');
+
+    this.setState({ isActive: true });
+  };
+
+  getInputArea = () => {
+    const { selectedOption, placeholder, value, clearSelection } = this.props;
+    return selectedOption ? (
+      <div className="InputSelect__selected-item-container">
+        <div className="InputSelect__selected-item">
+          {selectedOption.name}
+          <div className="InputSelect__clear-icon" onClick={clearSelection}>
+            X
+          </div>
+        </div>
+      </div>
+    ) : (
+      <input
+        autoComplete="off"
+        type="text"
+        name="value"
+        value={value}
+        onChange={this.updateField}
+        onClick={() => {
+          this.setState({ isActive: true });
+        }}
+        placeholder={placeholder}
+      />
+    );
   };
 
   render() {
-    const { isActive, options, value, selectedItem } = this.state;
-    const { placeholder, isLoading } = this.props;
-
+    const { isActive, options, value } = this.state;
+    const { placeholder, isLoading, selectedOption } = this.props;
     const optionsStyle = isActive ? 'active' : '';
+    const inputArea = this.getInputArea();
+
     return (
-      <div style={{ width: '100%', boxSizing: 'border-box' }}>
+      <div className="InputSelect__container">
         {isLoading && <div className="InputSelect__loading-icon">·</div>}
-        {selectedItem ? (
-          <InputSelectedItem name={selectedItem.name} />
-        ) : (
-          <input
-            autoComplete="off"
-            type="text"
-            name="value"
-            value={value}
-            onChange={this.updateField}
-            onClick={() => {
-              this.setState({ isActive: true });
-            }}
-            placeholder={placeholder}
-          />
-        )}
+        {inputArea}
         <div className={`InputSelect__options ${optionsStyle}`}>
           {options && options.length > 0 ? (
             options.map(tempOption => {

@@ -1,11 +1,9 @@
 import React from 'react';
 
-const InputSelectedItem = ({ name }) => {
-  return (
-    <div>
-      <div>{name}</div>
-    </div>
-  );
-};
+class InputSelectedItem extends React.PureComponent {
+  render() {
+    return <div>hell</div>;
+  }
+}
 
 export default InputSelectedItem;

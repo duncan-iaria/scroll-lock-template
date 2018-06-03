@@ -1,6 +1,4 @@
 import React from 'react';
-import { debounce } from 'lodash';
-import { searchGuests } from '../../../api/GuestAPI';
 
 // COMPONENTS
 import { AnimatedText } from '../../shared';
@@ -14,58 +12,7 @@ const flourish = require('../../../assets/images/logo/Flourish.svg');
 class RSVP extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedGuest: null,
-      isAttending: false,
-      isPlusOne: false,
-      isLoading: false,
-    };
-
-    this.getGuest = debounce(this.getGuest, 250);
   }
-
-  updateField = tEvent => {
-    tEvent.preventDefault();
-    const { name, value } = tEvent.target;
-    if (value === 'true' || value === 'false') {
-      this.setState({
-        [name]: !(value === 'true'),
-      });
-    } else {
-      this.setState({
-        [name]: value,
-      });
-
-      if (name === 'name') {
-        this.getGuest();
-      }
-    }
-  };
-
-  getGuest = async () => {
-    const { name } = this.state;
-    let guests;
-
-    this.setState({ isLoading: true });
-    const tempResponse = await searchGuests(name);
-    console.log(tempResponse);
-    if (tempResponse) {
-      guests = tempResponse.map(tempGuest => {
-        return {
-          id: tempGuest._id,
-          name: tempGuest.displayName,
-        };
-      });
-    }
-
-    this.setState({ guests, isLoading: false });
-    console.log(tempResponse);
-  };
-
-  onSelectGuest = tGuest => {
-    console.log(tGuest);
-    this.setState({ selectedGuest: tGuest });
-  };
 
   submitRSVP = tEvent => {
     tEvent.preventDefault();
@@ -74,7 +21,6 @@ class RSVP extends React.Component {
   };
 
   render() {
-    const { isAttending, isPlusOne, isLoading } = this.state;
     return (
       <div className="RSVP__container">
         <div className="RSVP__title">
@@ -84,15 +30,7 @@ class RSVP extends React.Component {
         <AnimatedText>
           <div className="RSVP__text">
             <p>We'd love to have you...</p>
-            <RSVPForm
-              isAttending={isAttending}
-              isPlusOne={isPlusOne}
-              onUpdateField={this.updateField}
-              onSubmit={this.submitRSVP}
-              getOptions={this.getGuest}
-              onSelectGuest={this.onSelectGuest}
-              isLoading={isLoading}
-            />
+            <RSVPForm />
           </div>
         </AnimatedText>
         <img src={mountain} alt={'Mountain Logo'} height={30} style={{ padding: '30px' }} />

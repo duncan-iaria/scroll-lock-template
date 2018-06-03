@@ -15,6 +15,11 @@
     outline: none;
     color: $textDark;
     height: 30px;
+    border: none;
+    // border: 3px solid $textDark;
+  }
+
+  input[type='submit'] {
     border: 3px solid $textDark;
   }
 
@@ -26,9 +31,9 @@
   }
 
   input[type='text'] {
-    padding: 0px 8px;
+    // padding: 0px 8px;
     width: 100%;
-    border: 3px solid $textDark;
+    // border: 3px solid $textDark;
     // background-color: $backgroundWhite;
   }
 
@@ -41,6 +46,15 @@
     outline: none;
     color: $textDark;
     height: 30px;
+  }
+
+  .InputSelect__container {
+    box-sizing: border-box;
+    padding: 0px 8px;
+    width: 100%;
+    // display: flex;
+    border: 3px solid $textDark;
+    background-color: white;
   }
 
   .InputSelect__options {
@@ -77,6 +91,24 @@
       color: white;
       background-color: $sophieOrange;
     }
+  }
+
+  .InputSelect__selected-item-container {
+    flex: 1;
+    display: flex;
+    padding: 2px;
+  }
+
+  .InputSelect__selected-item {
+    flex: 1;
+    display: flex;
+  }
+
+  .InputSelect__clear-icon {
+    cursor: pointer;
+    margin-left: 6px;
+    border: 1px solid $textDark;
+    border-radius: 4px;
   }
 
   .InputSelect__info {
