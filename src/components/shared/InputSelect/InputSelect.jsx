@@ -92,7 +92,7 @@ class InputSelect extends React.Component {
         {inputArea}
         <div className={`InputSelect__options ${optionsStyle}`}>
           {tempOptions && tempOptions.length > 0 ? (
-            options.map(tempOption => {
+            tempOptions.map(tempOption => {
               return (
                 <div
                   className="InputSelect__options-item"

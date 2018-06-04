@@ -23,6 +23,7 @@ class RSVPForm extends React.Component {
     ];
 
     this.getGuest = debounce(this.getGuest, 250);
+    this.getMaxGuests = this.getMaxGuests.bind(this);
   }
 
   updateField = tEvent => {
@@ -67,11 +68,12 @@ class RSVPForm extends React.Component {
   };
 
   getMaxGuests = maxGuests => {
+    const { selectedGuest } = this.state;
+
     let guestArray = [];
-    for (let i = 1; i < maxGuests; i++) {
+    for (let i = 1; i <= maxGuests; i++) {
       guestArray.push({ name: i, value: i });
     }
-    console.log('max guests array:', guestArray);
     return guestArray;
   };
 
@@ -80,8 +82,9 @@ class RSVPForm extends React.Component {
     this.setState({ selectedGuest: tGuest });
   };
 
-  selectGuestAttendance = () => {
-    console.log('hey guest attendance selected');
+  selectGuestAttendance = ({ value: tNumberAttending }) => {
+    const { selectedGuest } = this.state;
+    this.setState({ selectedGuest: { ...selectedGuest, guestsAttending: tNumberAttending } });
   };
 
   clearGuest = () => {
@@ -129,17 +132,21 @@ class RSVPForm extends React.Component {
                   this.updateField(tEvent);
                 }}
               />
-              <DropdownSelect selectValue={2} />
-              {selectedGuest.isPlusOne ? (
-                <InputCheckbox
-                  name="isPlusOne"
-                  label="Plus One?"
-                  value={selectedGuest.isPlusOne}
-                  onClick={this.updateField}
-                />
-              ) : null}
             </div>
-            <input type="submit" value="RSVP" />
+            {selectedGuest &&
+              selectedGuest.maxGuests > 1 && (
+                <div className="RSVPForm__input-row">
+                  <DropdownSelect
+                    label="Guests in Attendance"
+                    selectedValue={selectedGuest.guestsAttending}
+                    selectOption={this.selectGuestAttendance}
+                    options={this.getMaxGuests(selectedGuest.maxGuests)}
+                  />
+                </div>
+              )}
+            <div className="RSVPForm__input-row">
+              <input style={{ alignSelf: 'flex-end' }} type="submit" value="RSVP" />
+            </div>
           </div>
         ) : null}
       </form>
