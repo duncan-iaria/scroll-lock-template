@@ -1,6 +1,6 @@
 import React from 'react';
 import { debounce } from 'lodash';
-import { searchGuests } from '../../../api/GuestAPI';
+import { searchGuests, updateGuest } from '../../../api/GuestAPI';
 import { InputCheckbox, InputSelect, DropdownSelect } from '../../shared/';
 
 // STYLES
@@ -95,6 +95,7 @@ class RSVPForm extends React.Component {
     const { selectedGuest } = this.state;
     tEvent.preventDefault();
     console.log('current guest info', selectedGuest);
+    updateGuest(selectedGuest);
     this.setState({ isRSVP: true });
   };
 
@@ -128,7 +129,7 @@ class RSVPForm extends React.Component {
                 label="Regretfully Decline."
                 value={!selectedGuest.isAttending}
                 onClick={tEvent => {
-                  tEvent.target.value = !selectedGuest.isAttending;
+                  tEvent.target.value = !!selectedGuest.isAttending;
                   this.updateField(tEvent);
                 }}
               />
