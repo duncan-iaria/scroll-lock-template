@@ -11,19 +11,18 @@ class RSVPForm extends React.Component {
     super(props);
     console.log('rvsp form reconstruct');
     this.state = {
+      name: '',
       selectedGuest: null,
       isRSVP: false,
       isLoading: false,
+      guests: [
+        { id: 1, name: 'duncan', isAttending: false, isPlusOne: true, maxGuests: 4, guestsAttending: 1 },
+        { id: 2, name: 'rhi', isAttending: false, isPlusOne: true, maxGuests: 2, guestsAttending: 1 },
+        { id: 3, name: 'nick', isAttending: false, isPlusOne: false, maxGuests: 1, guestsAttending: 1 },
+      ],
     };
 
-    this.guests = [
-      { id: 1, name: 'duncan', isAttending: false, isPlusOne: true, maxGuests: 4, guestsAttending: 1 },
-      { id: 2, name: 'rhi', isAttending: false, isPlusOne: true, maxGuests: 2, guestsAttending: 1 },
-      { id: 3, name: 'nick', isAttending: false, isPlusOne: false, maxGuests: 1, guestsAttending: 1 },
-    ];
-
     this.getGuest = debounce(this.getGuest, 250);
-    this.getMaxGuests = this.getMaxGuests.bind(this);
   }
 
   updateField = tEvent => {
@@ -45,6 +44,12 @@ class RSVPForm extends React.Component {
         this.getGuest();
       }
     }
+  };
+
+  updateSelect = tEvent => {
+    tEvent.preventDefault();
+    const { name, value } = tEvent.target;
+    this.setState({ [name]: value }, this.getGuest);
   };
 
   getGuest = async () => {
@@ -78,7 +83,6 @@ class RSVPForm extends React.Component {
   };
 
   onSelectGuest = tGuest => {
-    console.log('top level select: ', tGuest);
     this.setState({ selectedGuest: tGuest });
   };
 
@@ -94,24 +98,24 @@ class RSVPForm extends React.Component {
   onSubmit = tEvent => {
     const { selectedGuest } = this.state;
     tEvent.preventDefault();
-    console.log('current guest info', selectedGuest);
     updateGuest(selectedGuest);
     this.setState({ isRSVP: true });
   };
 
   render() {
-    const { selectedGuest, isRSVP } = this.state;
+    const { selectedGuest, isRSVP, isLoading, name, guests } = this.state;
     return (
       <form onSubmit={this.onSubmit} className="RSVPForm__form">
         <div className="RSVPForm__input-row">
           <InputSelect
-            initialOptions={this.guests}
-            getOptions={this.getGuest}
+            value={name}
+            name="name"
+            options={guests}
+            updateField={this.updateSelect}
             selectItem={this.onSelectGuest}
             selectedOption={selectedGuest}
             clearSelection={this.clearGuest}
-            isLoading={this.isLoading}
-            onUpdateField={this.updateField}
+            isLoading={isLoading}
             placeholder="Your name, please"
           />
         </div>

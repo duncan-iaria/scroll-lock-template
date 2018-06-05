@@ -8,31 +8,11 @@ class InputSelect extends React.Component {
     super(props);
     this.state = {
       isActive: false,
-      isLoading: false,
-      value: '',
-      options: this.props.initialOptions || [],
     };
   }
 
   handleClickOutside = evt => {
-    console.log('hey im outside');
     this.setState({ isActive: false });
-  };
-
-  getOptions = async () => {
-    const { value } = this.state;
-    const { getOptions } = this.props;
-
-    this.setState({ isLoading: true });
-
-    const tempOptions = await getOptions(value);
-    this.setState({ isLoading: false, options: tempOptions });
-  };
-
-  updateField = tEvent => {
-    tEvent.preventDefault();
-    const { name, value } = tEvent.target;
-    this.setState({ [name]: value, selectItem: null }, this.getOptions);
   };
 
   onSelectItem = tItem => {
@@ -43,13 +23,11 @@ class InputSelect extends React.Component {
 
   onClearSelected = () => {
     const { clearSelected } = this.props;
-    console.log('on cleared');
-
     this.setState({ isActive: true });
   };
 
   getInputArea = () => {
-    const { selectedOption, placeholder, value, clearSelection } = this.props;
+    const { selectedOption, placeholder, value, name, clearSelection, updateField } = this.props;
     return selectedOption ? (
       <div className="InputSelect__selected-item-container">
         <div
@@ -68,9 +46,9 @@ class InputSelect extends React.Component {
       <input
         autoComplete="off"
         type="text"
-        name="value"
+        name={name}
         value={value}
-        onChange={this.updateField}
+        onChange={updateField}
         onClick={() => {
           this.setState({ isActive: true });
         }}
@@ -80,9 +58,8 @@ class InputSelect extends React.Component {
   };
 
   render() {
-    const { isActive, options, value } = this.state;
-    const { placeholder, isLoading, selectedOption } = this.props;
-    const tempOptions = options || this.getOptions();
+    const { isActive } = this.state;
+    const { placeholder, isLoading, selectedOption, options } = this.props;
     const optionsStyle = isActive ? 'active' : '';
     const inputArea = this.getInputArea();
 
@@ -91,8 +68,8 @@ class InputSelect extends React.Component {
         {isLoading && <div className="InputSelect__loading-icon">·</div>}
         {inputArea}
         <div className={`InputSelect__options ${optionsStyle}`}>
-          {tempOptions && tempOptions.length > 0 ? (
-            tempOptions.map(tempOption => {
+          {options && options.length > 0 ? (
+            options.map(tempOption => {
               return (
                 <div
                   className="InputSelect__options-item"
