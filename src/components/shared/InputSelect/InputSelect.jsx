@@ -1,8 +1,6 @@
 import React from 'react';
 import onClickOutside from 'react-onclickoutside';
 
-import InputSelectedItem from './';
-
 class InputSelect extends React.Component {
   constructor(props) {
     super(props);
@@ -19,11 +17,6 @@ class InputSelect extends React.Component {
     const { selectItem } = this.props;
     selectItem(tItem);
     this.setState({ isActive: false, value: tItem.name });
-  };
-
-  onClearSelected = () => {
-    const { clearSelected } = this.props;
-    this.setState({ isActive: true });
   };
 
   getInputArea = () => {
@@ -59,7 +52,7 @@ class InputSelect extends React.Component {
 
   render() {
     const { isActive } = this.state;
-    const { placeholder, isLoading, selectedOption, options } = this.props;
+    const { isLoading, options } = this.props;
     const optionsStyle = isActive ? 'active' : '';
     const inputArea = this.getInputArea();
 

@@ -36,8 +36,7 @@ export const updateGuest = async tGuest => {
     const { data, error } = tempResponse;
     tempResponse = data;
   } catch (tError) {
-    console.error('error updating guest: ', tError);
-    tempResponse = { error: tError };
+    throw new Error(`Error updating guest: ${tError}`);
   }
 
   return tempResponse;

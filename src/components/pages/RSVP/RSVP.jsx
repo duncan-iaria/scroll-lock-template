@@ -1,4 +1,5 @@
 import React from 'react';
+import { updateGuest } from '../../../api/';
 
 // COMPONENTS
 import { AnimatedText } from '../../shared';
@@ -12,15 +13,29 @@ const flourish = require('../../../assets/images/logo/Flourish.svg');
 class RSVP extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isRsvp: false,
+      isAttending: false,
+      isLoading: false,
+    };
   }
 
-  submitRSVP = tEvent => {
-    tEvent.preventDefault();
-    console.log(tEvent.target.name);
-    console.log(tEvent.target.value);
+  onRsvp = tGuest => {
+    this.setState({ isLoading: true });
+    updateGuest(tGuest)
+      .then(() => {
+        this.setState({ isRsvp: true });
+      })
+      .catch(tError => {
+        console.error('Error saving RSVP:', tError);
+      })
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
   };
 
   render() {
+    const { isRsvp, isLoading, isAttending } = this.state;
     return (
       <div className="RSVP__container">
         <div className="RSVP__title">
@@ -28,10 +43,18 @@ class RSVP extends React.Component {
         </div>
         <img className="spacer" src={flourish} alt={'Spacer Flourish'} />
         <AnimatedText>
-          <div className="RSVP__text">
-            <p>We'd love to have you...</p>
-            <RSVPForm />
-          </div>
+          {isLoading ? (
+            <div>loading</div>
+          ) : isRsvp ? (
+            <div className="RSVP__text">
+              <p>See you soon...</p>
+            </div>
+          ) : (
+            <div className="RSVP__text">
+              <p>We'd love to have you...</p>
+              <RSVPForm onRsvp={this.onRsvp} />
+            </div>
+          )}
         </AnimatedText>
         <img src={mountain} alt={'Mountain Logo'} height={30} style={{ padding: '30px' }} />
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { debounce } from 'lodash';
-import { searchGuests, updateGuest } from '../../../api/GuestAPI';
+import { searchGuests } from '../../../api/GuestAPI';
 import { InputCheckbox, InputSelect, DropdownSelect } from '../../shared/';
 
 // STYLES
@@ -9,11 +9,9 @@ import './RSVPForm.style.css';
 class RSVPForm extends React.Component {
   constructor(props) {
     super(props);
-    console.log('rvsp form reconstruct');
     this.state = {
       name: '',
       selectedGuest: null,
-      isRSVP: false,
       isLoading: false,
       guests: [
         { id: 1, name: 'duncan', isAttending: false, isPlusOne: true, maxGuests: 4, guestsAttending: 1 },
@@ -73,8 +71,6 @@ class RSVPForm extends React.Component {
   };
 
   getMaxGuests = maxGuests => {
-    const { selectedGuest } = this.state;
-
     let guestArray = [];
     for (let i = 1; i <= maxGuests; i++) {
       guestArray.push({ name: i, value: i });
@@ -95,17 +91,17 @@ class RSVPForm extends React.Component {
     this.setState({ selectedGuest: null });
   };
 
-  onSubmit = tEvent => {
-    const { selectedGuest } = this.state;
-    tEvent.preventDefault();
-    updateGuest(selectedGuest);
-    this.setState({ isRSVP: true });
-  };
-
   render() {
-    const { selectedGuest, isRSVP, isLoading, name, guests } = this.state;
+    const { selectedGuest, isLoading, name, guests } = this.state;
+    const { onRsvp } = this.props;
     return (
-      <form onSubmit={this.onSubmit} className="RSVPForm__form">
+      <form
+        onSubmit={tEvent => {
+          tEvent.preventDefault();
+          onRsvp(selectedGuest);
+        }}
+        className="RSVPForm__form"
+      >
         <div className="RSVPForm__input-row">
           <InputSelect
             value={name}
@@ -150,7 +146,7 @@ class RSVPForm extends React.Component {
                 </div>
               )}
             <div className="RSVPForm__input-row">
-              <input style={{ alignSelf: 'flex-end' }} type="submit" value="RSVP" />
+              <input type="submit" value="RSVP" />
             </div>
           </div>
         ) : null}
