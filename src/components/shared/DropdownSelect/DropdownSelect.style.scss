@@ -3,21 +3,20 @@
 
 .DropdownSelect__wrapper {
   display: flex;
-  width: 270px;
-  align-items: flex-end;
+  flex-direction: column;
 
   .DropdownSelect__dropdown {
     position: relative;
     flex: 1;
     display: flex;
     height: 30px;
+    width: 100px;
     border: 3px solid $textDark;
     background-color: white;
   }
 
   .DropdownSelect__label {
-    flex: 2;
-    margin-left: 8px;
+    flex: 1;
   }
 
   .DropdownSelect__value {

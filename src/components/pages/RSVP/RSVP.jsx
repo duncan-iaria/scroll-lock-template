@@ -27,7 +27,7 @@ class RSVP extends React.Component {
         this.setState({ isRsvp: true });
       })
       .catch(tError => {
-        console.error('Error saving RSVP:', tError);
+        console.error(tError);
       })
       .finally(() => {
         this.setState({ isLoading: false });
@@ -35,7 +35,7 @@ class RSVP extends React.Component {
   };
 
   render() {
-    const { isRsvp, isLoading, isAttending } = this.state;
+    const { isRsvp, isLoading } = this.state;
     return (
       <div className="RSVP__container">
         <div className="RSVP__title">

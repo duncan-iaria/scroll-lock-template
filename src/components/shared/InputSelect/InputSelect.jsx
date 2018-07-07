@@ -72,7 +72,7 @@ class InputSelect extends React.Component {
                     this.onSelectItem(tempOption);
                   }}
                 >
-                  {tempOption.name}
+                  <div className="InputSelect__item-value">{tempOption.name}</div>
                 </div>
               );
             })

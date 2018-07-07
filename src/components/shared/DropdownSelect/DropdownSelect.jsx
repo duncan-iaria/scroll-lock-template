@@ -30,6 +30,7 @@ class DropdownSelect extends React.Component {
     const activeStyle = isActive ? 'active' : '';
     return (
       <div className="DropdownSelect__wrapper">
+        <div className="DropdownSelect__label">{label}</div>
         <div className="DropdownSelect__dropdown">
           <div className="DropdownSelect__value">{selectedValue}</div>
           <div className="DropdownSelect__toggle" onClick={() => this.setState({ isActive: true })}>
@@ -54,7 +55,7 @@ class DropdownSelect extends React.Component {
               : null}
           </div>
         </div>
-        <div className="DropdownSelect__label">{label}</div>
+        {/* <div className="DropdownSelect__label">{label}</div> */}
       </div>
     );
   }

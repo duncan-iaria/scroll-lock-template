@@ -10,6 +10,11 @@ export const searchGuests = async tGuestSearch => {
     tempResponse = await fetch(tempUrl);
     tempResponse = await tempResponse.json();
     const { data, error } = tempResponse;
+
+    if (error) {
+      throw new Error(error);
+    }
+
     tempResponse = data;
   } catch (tError) {
     console.error('error searching for guest: ', tError);
@@ -34,10 +39,13 @@ export const updateGuest = async tGuest => {
 
     tempResponse = await tempResponse.json();
     const { data, error } = tempResponse;
-    tempResponse = data;
+    if (error) {
+      throw new Error(error);
+    }
+    tempResponse = data.value;
   } catch (tError) {
-    throw new Error(`Error updating guest: ${tError}`);
+    throw new Error(tError);
   }
-
+  console.log('response:', tempResponse);
   return tempResponse;
 };

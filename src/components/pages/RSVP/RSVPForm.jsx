@@ -1,7 +1,7 @@
 import React from 'react';
 import { debounce } from 'lodash';
 import { searchGuests } from '../../../api/GuestAPI';
-import { InputCheckbox, InputSelect, DropdownSelect } from '../../shared/';
+import { InputCheckbox, InputSelect, DropdownSelect, AnimatedText } from '../../shared/';
 
 // STYLES
 import './RSVPForm.style.css';
@@ -13,11 +13,7 @@ class RSVPForm extends React.Component {
       name: '',
       selectedGuest: null,
       isLoading: false,
-      guests: [
-        { id: 1, name: 'duncan', isAttending: false, isPlusOne: true, maxGuests: 4, guestsAttending: 1 },
-        { id: 2, name: 'rhi', isAttending: false, isPlusOne: true, maxGuests: 2, guestsAttending: 1 },
-        { id: 3, name: 'nick', isAttending: false, isPlusOne: false, maxGuests: 1, guestsAttending: 1 },
-      ],
+      guests: [],
     };
 
     this.getGuest = debounce(this.getGuest, 250);
@@ -62,6 +58,7 @@ class RSVPForm extends React.Component {
         return {
           id: tempGuest._id,
           name: tempGuest.displayName,
+          ...tempGuest,
         };
       });
     }
@@ -70,9 +67,9 @@ class RSVPForm extends React.Component {
     console.log(tempResponse);
   };
 
-  getMaxGuests = maxGuests => {
+  getMaxGuests = maxGuestCount => {
     let guestArray = [];
-    for (let i = 1; i <= maxGuests; i++) {
+    for (let i = 1; i <= maxGuestCount; i++) {
       guestArray.push({ name: i, value: i });
     }
     return guestArray;
@@ -84,7 +81,7 @@ class RSVPForm extends React.Component {
 
   selectGuestAttendance = ({ value: tNumberAttending }) => {
     const { selectedGuest } = this.state;
-    this.setState({ selectedGuest: { ...selectedGuest, guestsAttending: tNumberAttending } });
+    this.setState({ selectedGuest: { ...selectedGuest, attendingGuestCount: tNumberAttending } });
   };
 
   clearGuest = () => {
@@ -102,53 +99,88 @@ class RSVPForm extends React.Component {
         }}
         className="RSVPForm__form"
       >
-        <div className="RSVPForm__input-row">
-          <InputSelect
-            value={name}
-            name="name"
-            options={guests}
-            updateField={this.updateSelect}
-            selectItem={this.onSelectGuest}
-            selectedOption={selectedGuest}
-            clearSelection={this.clearGuest}
-            isLoading={isLoading}
-            placeholder="Your name, please"
-          />
+        <div className="RSVPForm__input-section">
+          <div className="RSVPForm__input-row">
+            <InputSelect
+              value={name}
+              name="name"
+              options={guests}
+              updateField={this.updateSelect}
+              selectItem={this.onSelectGuest}
+              selectedOption={selectedGuest}
+              clearSelection={this.clearGuest}
+              isLoading={isLoading}
+              placeholder="Your name, please..."
+            />
+          </div>
         </div>
         {selectedGuest ? (
-          <div>
-            <div className="RSVPForm__input-row">
-              <InputCheckbox
-                name="isAttending"
-                label="Attending!"
-                value={selectedGuest.isAttending}
-                onClick={this.updateField}
-              />
-              <InputCheckbox
-                name="isAttending"
-                label="Regretfully Decline."
-                value={!selectedGuest.isAttending}
-                onClick={tEvent => {
-                  tEvent.target.value = !!selectedGuest.isAttending;
-                  this.updateField(tEvent);
-                }}
-              />
+          <AnimatedText isDelay={false}>
+            <div className="RSVPForm__input-section">
+              <div className="RSVPForm__input-row">
+                <div className="RSVPForm__label">Wedding Ceremony</div>
+              </div>
+              <div className="RSVPForm__input-row">
+                <InputCheckbox
+                  name="isWeddingRsvp"
+                  label="Attending!"
+                  value={selectedGuest.isWeddingRsvp}
+                  onClick={tEvent => {
+                    tEvent.target.value = !!selectedGuest.isWeddingRsvp;
+                    this.updateField(tEvent);
+                  }}
+                />
+                <InputCheckbox
+                  name="isWeddingRsvp"
+                  label="Regretfully Decline."
+                  value={!selectedGuest.isWeddingRsvp}
+                  onClick={tEvent => {
+                    tEvent.target.value = !!selectedGuest.isWeddingRsvp;
+                    this.updateField(tEvent);
+                  }}
+                />
+              </div>
+              {selectedGuest &&
+                selectedGuest.maxGuestCount > 1 && (
+                  <div className="RSVPForm__input-row">
+                    <DropdownSelect
+                      label="Guests in Attendance"
+                      selectedValue={selectedGuest.attendingGuestCount}
+                      selectOption={this.selectGuestAttendance}
+                      options={this.getMaxGuests(selectedGuest.maxGuestCount)}
+                    />
+                  </div>
+                )}
             </div>
-            {selectedGuest &&
-              selectedGuest.maxGuests > 1 && (
-                <div className="RSVPForm__input-row">
-                  <DropdownSelect
-                    label="Guests in Attendance"
-                    selectedValue={selectedGuest.guestsAttending}
-                    selectOption={this.selectGuestAttendance}
-                    options={this.getMaxGuests(selectedGuest.maxGuests)}
-                  />
-                </div>
-              )}
+            <div className="RSVPForm__input-section">
+              <div className="RSVPForm__input-row">
+                <div className="RSVPForm__label">Welcome Dinner</div>
+              </div>
+              <div className="RSVPForm__input-row">
+                <InputCheckbox
+                  name="isWelcomeRsvp"
+                  label="Attending!"
+                  value={selectedGuest.isWelcomeRsvp}
+                  onClick={tEvent => {
+                    tEvent.target.value = !!selectedGuest.isWelcomeRsvp;
+                    this.updateField(tEvent);
+                  }}
+                />
+                <InputCheckbox
+                  name="isWelcomeRsvp"
+                  label="Regretfully Decline."
+                  value={!selectedGuest.isWelcomeRsvp}
+                  onClick={tEvent => {
+                    tEvent.target.value = !!selectedGuest.isWelcomeRsvp;
+                    this.updateField(tEvent);
+                  }}
+                />
+              </div>
+            </div>
             <div className="RSVPForm__input-row">
               <input type="submit" value="RSVP" />
             </div>
-          </div>
+          </AnimatedText>
         ) : null}
       </form>
     );

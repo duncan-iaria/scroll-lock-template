@@ -10,6 +10,18 @@
     margin-bottom: 8px;
   }
 
+  .RSVPForm__input-section {
+    margin-bottom: 24px;
+  }
+
+  .RSVPForm__label {
+    font-family: 'Amatic SC', cursive;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+  }
+
   input {
     font-size: 18px;
     outline: none;
@@ -89,6 +101,11 @@
       color: white;
       background-color: $sophieOrange;
     }
+
+    .InputSelect__item-value {
+      padding-top: 2px;
+      padding-left: 6px;
+    }
   }
 
   .InputSelect__selected-item-container {
@@ -128,10 +145,12 @@
     position: absolute;
     right: 0px;
     top: 6px;
+    padding-top: 2px;
+    padding-right: 12px;
     animation-name: loader;
     animation-direction: alternate;
     animation-iteration-count: infinite;
-    animation-duration: 500ms;
+    animation-duration: 400ms;
   }
 
   input[type='submit'] {
@@ -151,22 +170,22 @@
 
 @keyframes loader {
   0% {
-    transform: translateX(0px);
+    transform: translateX(0px) scale(0.9, 1.1);
   }
 
-  40% {
-    transform: scale(1, 1);
+  10% {
+    transform: translateX(-2px) scale(1, 1);
   }
 
   50% {
-    transform: translateX(10px) scale(1.5, 0.5);
+    transform: translateX(-10px) scale(1.2, 0.8);
   }
 
-  60% {
-    transform: scale(1, 1);
+  90% {
+    transform: translateX(-18px) scale(1, 1);
   }
 
   100% {
-    transform: translateX(-20px);
+    transform: translateX(-20px) scale(0.9, 1.1);
   }
 }
