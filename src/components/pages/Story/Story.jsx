@@ -4,6 +4,7 @@ import { AnimatedText } from '../../shared';
 // STYLES
 import './Story.style.css';
 const tree = require('../../../assets/images/logo/Tree.svg');
+const flourish = require('../../../assets/images/logo/Flourish.svg');
 
 //=========================
 // COMPONENT
@@ -17,6 +18,7 @@ const Story = ({ history }) => {
       <div className="Story__title">
         <h1>Our Story</h1>
       </div>
+      <img className="spacer" src={flourish} alt={'Spacer Flourish'} />
       <div className="Story__text">
         <AnimatedText>
           <p>
@@ -35,7 +37,7 @@ const Story = ({ history }) => {
           </p>
           <p>
             Rhiannon didn’t make it to this show, but as fate would have it, a few months later, they ran into each
-            other at a popular spot downtime on Cinco de Mayo. The rest, as they say, is history! Along the way, they
+            other at a popular spot downtown on Cinco de Mayo. The rest, as they say, is history! Along the way, they
             have lived in Chapel Hill, NC (where they adopted their darling dog Sophie) and now in Atlanta, GA. They
             can’t wait to celebrate with their family and friends!
           </p>
@@ -43,7 +45,6 @@ const Story = ({ history }) => {
       </div>
       <img src={tree} alt={'Tree Logo'} height={32} style={{ padding: '30px' }} />
       <div />
-      {/* <div className="Story__footer"/> */}
     </div>
   );
 };
