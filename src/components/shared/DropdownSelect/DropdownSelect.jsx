@@ -16,9 +16,9 @@ class DropdownSelect extends React.Component {
   };
 
   onSelectItem = option => {
-    const { selectOption } = this.props;
+    const { selectOption, name } = this.props;
     if (selectOption) {
-      selectOption(option);
+      selectOption({ ...option, name });
       this.setState({ isActive: false });
     }
   };
