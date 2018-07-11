@@ -1,4 +1,6 @@
-const API_URL = 'http://localhost:7071/api';
+import { getBaseUrl } from './';
+
+const API_URL = getBaseUrl();
 
 export const searchGuests = async tGuestSearch => {
   let tempUrl = new URL(`${API_URL}/GetGuest`);
