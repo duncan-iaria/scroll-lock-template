@@ -6,13 +6,10 @@ import './AnimatedText.style.css';
 //=========================
 // COMPONENT
 //=========================
-const AnimatedText = ( { children } ) => {
-    return(
-        <div className="animated-text__text">
-            { children }
-        </div>
-    )
-}
+const AnimatedText = ({ children, isDelay = true }) => {
+  const tempStyle = isDelay ? 'animated-text__text--delayed' : 'animated-text__text';
+  return <div className={tempStyle}>{children}</div>;
+};
 
 //=========================
 // EXPORT

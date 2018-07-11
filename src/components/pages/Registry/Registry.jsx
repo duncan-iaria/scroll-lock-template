@@ -3,6 +3,8 @@ import { AnimatedText } from '../../shared';
 
 // STYLES
 import './Registry.style.css';
+const tree = require('../../../assets/images/logo/Tree.svg');
+const flourish = require('../../../assets/images/logo/Flourish.svg');
 
 //=========================
 // COMPONENT
@@ -13,6 +15,7 @@ const Registry = () => {
       <div className="Registry__title">
         <h1>Registery</h1>
       </div>
+      <img className="spacer" src={flourish} alt={'Spacer Flourish'} />
       <AnimatedText>
         <div className="Registry__text">
           <p>
@@ -22,6 +25,7 @@ const Registry = () => {
           </p>
         </div>
       </AnimatedText>
+      <img src={tree} alt={'Tree Logo'} height={32} style={{ padding: '30px' }} />
     </div>
   );
 };

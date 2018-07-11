@@ -1,0 +1,191 @@
+@import '../../styles/variables.style.scss';
+@import '../../styles/mixins.style.scss';
+
+.RSVPForm__form {
+  .RSVPForm__input-row {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    margin-bottom: 8px;
+  }
+
+  .RSVPForm__input-section {
+    margin-bottom: 24px;
+  }
+
+  .RSVPForm__label {
+    font-family: 'Amatic SC', cursive;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+  }
+
+  input {
+    font-size: 18px;
+    outline: none;
+    color: $textDark;
+    height: 30px;
+    border: none;
+    // border: 3px solid $textDark;
+  }
+
+  input[type='submit'] {
+    border: 3px solid $textDark;
+  }
+
+  input[type='checkbox'] {
+    outline: none;
+    color: $textDark;
+    height: 30px;
+    border: 3px solid $textDark;
+  }
+
+  input[type='text'] {
+    padding: 2px 0px;
+    width: 100%;
+  }
+
+  .input__select {
+    position: relative;
+    padding: 0px 8px;
+    width: 100%;
+    border: 3px solid $textDark;
+    font-size: 18px;
+    outline: none;
+    color: $textDark;
+    height: 30px;
+  }
+
+  .InputSelect__container {
+    box-sizing: border-box;
+    padding: 0px 8px;
+    width: 100%;
+    // display: flex;
+    border: 3px solid $textDark;
+    background-color: white;
+  }
+
+  .InputSelect__options {
+    position: absolute;
+    left: 0px;
+    box-sizing: border-box;
+    z-index: 10;
+    width: 100%;
+    background-color: white;
+    border-bottom: 3px solid $textDark;
+    border-right: 3px solid $textDark;
+    border-left: 3px solid $textDark;
+    display: none;
+
+    &.active {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+  }
+
+  .InputSelect__options-item {
+    width: 100%;
+    padding: 2px 2px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: color 200ms, background-color 250ms;
+
+    &:nth-child(odd) {
+      background-color: lighten($backgroundWhite, 3%);
+    }
+
+    &:hover {
+      color: white;
+      background-color: $sophieOrange;
+    }
+
+    .InputSelect__item-value {
+      padding-top: 2px;
+      padding-left: 6px;
+    }
+  }
+
+  .InputSelect__selected-item-container {
+    flex: 1;
+    display: flex;
+    padding: 2px;
+  }
+
+  .InputSelect__selected-item {
+    flex: 1;
+    display: flex;
+  }
+
+  .InputSelect__clear-icon {
+    cursor: pointer;
+    margin-left: 6px;
+    border: 1px solid $textDark;
+    border-radius: 4px;
+    padding: 2px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .InputSelect__info {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-content: center;
+    padding: 8px;
+  }
+
+  .InputSelect__loading-icon {
+    font-size: 72px;
+    color: $sophieOrange;
+    position: absolute;
+    right: 0px;
+    top: 6px;
+    padding-top: 2px;
+    padding-right: 12px;
+    animation-name: loader;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-duration: 400ms;
+  }
+
+  input[type='submit'] {
+    padding-top: 4px;
+    cursor: pointer;
+    height: 36px;
+    min-width: 100px;
+    background-color: white;
+    transition: background-color 250ms, color 250ms;
+
+    &:hover {
+      color: white;
+      background-color: $treeGreen;
+    }
+  }
+}
+
+@keyframes loader {
+  0% {
+    transform: translateX(0px) scale(0.9, 1.1);
+  }
+
+  10% {
+    transform: translateX(-2px) scale(1, 1);
+  }
+
+  50% {
+    transform: translateX(-10px) scale(1.2, 0.8);
+  }
+
+  90% {
+    transform: translateX(-18px) scale(1, 1);
+  }
+
+  100% {
+    transform: translateX(-20px) scale(0.9, 1.1);
+  }
+}

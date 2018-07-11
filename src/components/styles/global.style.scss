@@ -6,7 +6,8 @@ p,
 h1,
 h2,
 h3,
-h4 {
+h4,
+input {
   color: $textDark;
 }
 
@@ -27,6 +28,10 @@ html {
   background-color: $backgroundWhite;
 }
 
+input {
+  font-family: 'Josefin Slab', serif;
+}
+
 body {
   background-color: $backgroundWhite;
   font-family: 'Josefin Slab', serif;
@@ -35,4 +40,10 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+}
+
+.spacer {
+  height: 14px;
+  margin-top: 16px;
+  margin-bottom: 6px;
 }

@@ -8,13 +8,13 @@ import './App.css';
 import ContentContainer from '../components/shared/ContentContainer/ContentContainer';
 
 class App extends Component {
-	render() {
-		return (
-			<Router>
-				<ContentContainer/>
-			</Router>
-		);
-	}
+  render() {
+    return (
+      <Router>
+        <ContentContainer />
+      </Router>
+    );
+  }
 }
 
 export default App;
