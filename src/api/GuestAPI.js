@@ -1,4 +1,4 @@
-import { getBaseUrl } from './';
+import { getBaseUrl } from './api';
 
 const API_URL = getBaseUrl();
 
