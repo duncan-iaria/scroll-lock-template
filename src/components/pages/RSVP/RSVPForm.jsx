@@ -79,9 +79,10 @@ class RSVPForm extends React.Component {
     this.setState({ selectedGuest: tGuest });
   };
 
-  selectGuestAttendance = ({ value: tNumberAttending }) => {
+  selectGuestAttendance = ({ name, value: tNumberAttending }) => {
     const { selectedGuest } = this.state;
-    this.setState({ selectedGuest: { ...selectedGuest, attendingGuestCount: tNumberAttending } });
+    console.log('name:', name);
+    this.setState({ selectedGuest: { ...selectedGuest, [name]: tNumberAttending } });
   };
 
   clearGuest = () => {
@@ -91,6 +92,7 @@ class RSVPForm extends React.Component {
   render() {
     const { selectedGuest, isLoading, name, guests } = this.state;
     const { onRsvp } = this.props;
+    console.log('selectedGuest:', selectedGuest);
     return (
       <form
         onSubmit={tEvent => {
@@ -140,12 +142,13 @@ class RSVPForm extends React.Component {
                   }}
                 />
               </div>
-              {selectedGuest &&
+              {selectedGuest.isWeddingRsvp &&
                 selectedGuest.maxGuestCount > 1 && (
                   <div className="RSVPForm__input-row">
                     <DropdownSelect
+                      name="attendingWeddingGuestCount"
                       label="Guests in Attendance"
-                      selectedValue={selectedGuest.attendingGuestCount}
+                      selectedValue={selectedGuest.attendingWeddingGuestCount}
                       selectOption={this.selectGuestAttendance}
                       options={this.getMaxGuests(selectedGuest.maxGuestCount)}
                     />
@@ -176,6 +179,18 @@ class RSVPForm extends React.Component {
                   }}
                 />
               </div>
+              {selectedGuest.isWelcomeRsvp &&
+                selectedGuest.maxGuestCount > 1 && (
+                  <div className="RSVPForm__input-row">
+                    <DropdownSelect
+                      name="attendingWelcomeGuestCount"
+                      label="Guests in Attendance"
+                      selectedValue={selectedGuest.attendingWelcomeGuestCount}
+                      selectOption={this.selectGuestAttendance}
+                      options={this.getMaxGuests(selectedGuest.maxGuestCount)}
+                    />
+                  </div>
+                )}
             </div>
             <div className="RSVPForm__input-row">
               <input type="submit" value="RSVP" />
