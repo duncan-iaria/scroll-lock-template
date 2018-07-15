@@ -76,9 +76,7 @@ class StackNavItem extends React.PureComponent {
       >
         <Waypoint
           onEnter={() => {
-            this.setState({ isStartOfPage: true }, () => {
-              console.log('start hit');
-            });
+            this.setState({ isStartOfPage: true });
           }}
           onLeave={() => {
             this.setState({ isStartOfPage: false });
@@ -89,9 +87,7 @@ class StackNavItem extends React.PureComponent {
         {children}
         <Waypoint
           onEnter={() => {
-            this.setState({ isEndOfPage: true }, () => {
-              console.log('exit hit');
-            });
+            this.setState({ isEndOfPage: true });
           }}
           onLeave={() => {
             this.setState({ isEndOfPage: false });
