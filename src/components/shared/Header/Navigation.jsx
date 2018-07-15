@@ -18,7 +18,7 @@ const Navigation = ({ navigationClass }) => {
         </NavLink>
         <span className={navigationClass}>{'  —  '}</span>
         <NavLink className={navigationClass} to={routes.REGISTRY}>
-          Registery
+          Registry
         </NavLink>
       </div>
     </div>
