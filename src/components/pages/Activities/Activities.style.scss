@@ -1,21 +1,20 @@
 @import '../../styles/variables.style.scss';
 @import '../../styles/mixins.style.scss';
 
-.Lodging__container {
+.Activities__container {
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
-  //   background: linear-gradient($lightPurple, $lightPink);
   background-color: $backgroundWhite;
   overflow-y: auto;
 
-  .Lodging__title {
+  .Activities__title {
     font-size: 1.33em;
     margin-top: calc(#{$headerHeight} + 125px);
   }
 
-  .Lodging__text {
+  .Activities__text {
     width: 550px;
     margin-top: 50px;
 
@@ -33,7 +32,7 @@
     }
   }
 
-  .Lodging__label {
+  .Activities__label {
     font-family: 'Amatic SC', cursive;
     margin-top: 24px;
     text-transform: uppercase;
