@@ -124,7 +124,11 @@ class ContentContainer extends Component {
                 exact
                 path={routes.RSVP}
                 render={() => (
-                  <StackNavItem handleWheel={this.onHandleScroll} orderIndex={this.getOrderIndex(routes.RSVP)}>
+                  <StackNavItem
+                    handleWheel={this.onHandleScroll}
+                    orderIndex={this.getOrderIndex(routes.RSVP)}
+                    touchThreshold={25}
+                  >
                     <RSVP />
                   </StackNavItem>
                 )}

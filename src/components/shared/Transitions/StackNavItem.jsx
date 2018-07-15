@@ -29,6 +29,8 @@ class StackNavItem extends React.PureComponent {
   onHandleWheel(tScrollDir, tOrderIndex) {
     const { isEndOfPage, isStartOfPage } = this.state;
 
+    // console.log('scroll direction: ', tScrollDir);
+
     if (isEndOfPage && tScrollDir > 0) {
       this.props.handleWheel(tScrollDir, tOrderIndex);
     } else if (isStartOfPage && tScrollDir < 0) {
@@ -37,6 +39,7 @@ class StackNavItem extends React.PureComponent {
   }
 
   handleTouchStart(tTouchPosY) {
+    // console.log('touchStartPos:', tTouchPosY);
     this.setState({ touchStartY: tTouchPosY });
   }
 
@@ -52,8 +55,18 @@ class StackNavItem extends React.PureComponent {
   }
 
   handleTouchEnd = tOrderIndex => {
+    const { touchThreshold = 5 } = this.props;
     const { touchCurrentY, touchStartY } = this.state;
-    this.onHandleWheel(touchStartY - touchCurrentY, tOrderIndex);
+
+    if (touchCurrentY) {
+      const currentThreshold = Math.abs(touchStartY - touchCurrentY);
+
+      // console.log('currentThreshold: ', currentThreshold);
+      if (currentThreshold > touchThreshold) {
+        this.onHandleWheel(touchStartY - touchCurrentY, tOrderIndex);
+      }
+    }
+
     this.setState({ touchCurrentY: null });
   };
 
