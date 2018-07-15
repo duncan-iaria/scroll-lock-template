@@ -92,7 +92,6 @@ class RSVPForm extends React.Component {
   render() {
     const { selectedGuest, isLoading, name, guests } = this.state;
     const { onRsvp } = this.props;
-    console.log('selectedGuest:', selectedGuest);
     return (
       <form
         onSubmit={tEvent => {

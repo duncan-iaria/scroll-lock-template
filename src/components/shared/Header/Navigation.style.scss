@@ -5,35 +5,120 @@
   display: flex;
   justify-content: flex-end;
   flex: 1;
-  font-size: 1.25em;
+  font-size: 1em;
   align-items: center;
 
   @include phone {
-    order: -1;
+    // order: -1;
+    // justify-content: center;
+  }
+
+  .Navigation__hamburger-menu {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 12px 24px 12px 12px;
+    cursor: pointer;
+
+    @include desktop {
+      display: none;
+    }
+
+    @include tablet {
+      display: flex;
+    }
   }
 
   .Navigation__link-container {
     padding-right: 25px;
 
-    @include phone {
-      padding-top: 50px;
-      padding-right: 0px;
+    @include tablet {
+      display: none;
+    }
+
+    @include phablet {
+      display: none;
+    }
+
+    .Navigation__link-container.fullscreen {
+      background-color: red;
+
+      @include tablet {
+        display: none;
+      }
+
+      @include phablet {
+        display: none;
+      }
+
+      // @include phone {
+      //   padding-top: 50px;
+      //   padding-right: 0px;
+      // }
+    }
+    .nav-link {
+      color: $backgroundWhite;
+      text-decoration: none;
+      transition: color 0.75s;
+      margin-right: 6px;
+
+      &.landing {
+        color: #333;
+      }
+
+      @include phone {
+        margin-right: 0px;
+      }
     }
   }
+}
 
-  .nav-link {
+.NavigationMenu__background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: $backgroundDark;
+
+  //anims
+  animation-direction: forward;
+  animation-name: fadeIn;
+  animation-duration: 300ms;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+
+  a {
     color: $backgroundWhite;
     text-decoration: none;
-    transition: color 0.75s;
-    margin-right: 6px;
+  }
 
-    &.landing {
-      color: #333;
-    }
+  a:visited {
+    text-decoration: none;
+    color: $backgroundWhite;
+  }
+}
 
-    @include phone {
-      margin-right: 0px;
-    }
+.NavigationMenu__link-container {
+  display: flex;
+  flex-direction: column;
+  line-height: 2.333em;
+  font-size: 1.333em;
+}
+
+.NavigationMenu__link {
+  color: $backgroundWhite;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

@@ -15,11 +15,6 @@
 
   transition: background-color 0.75s;
 
-  @include phone {
-    flex-direction: column;
-    justify-content: center;
-  }
-
   &.landing {
     background-color: transparent;
   }
@@ -36,10 +31,6 @@
 
     &.landing {
       opacity: 0;
-    }
-
-    @include phone {
-      transform: translateY(35px);
     }
   }
 
