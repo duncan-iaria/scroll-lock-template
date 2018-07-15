@@ -17,8 +17,16 @@ const Navigation = ({ navigationClass }) => {
           Lodging
         </NavLink>
         <span className={navigationClass}>{'  —  '}</span>
+        <NavLink className={navigationClass} to={routes.ACTIVITIES}>
+          Activities
+        </NavLink>
+        <span className={navigationClass}>{'  —  '}</span>
         <NavLink className={navigationClass} to={routes.REGISTRY}>
           Registry
+        </NavLink>
+        <span className={navigationClass}>{'  —  '}</span>
+        <NavLink className={navigationClass} to={routes.RSVP}>
+          RSVP
         </NavLink>
       </div>
     </div>

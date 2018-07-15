@@ -4,7 +4,7 @@ import { TransitionGroup } from 'react-transition-group';
 import routes from '../../../constants/route.constants';
 
 //COMPONENTS
-import { Registry, Landing, Story, Lodging, RSVP } from '../../pages';
+import { Registry, Landing, Story, Lodging, RSVP, Activities } from '../../pages';
 import Header from '../Header/Header';
 import PageTransition from '../Transitions/PageTransition';
 import StackNavItem from '../Transitions/StackNavItem';
@@ -23,7 +23,7 @@ class ContentContainer extends Component {
       isTransitioning: false,
       transitionDuration: 800,
       transitionClassName: 'next',
-      screenOrder: [routes.LANDING, routes.STORY, routes.LODGING, routes.REGISTRY, routes.RSVP],
+      screenOrder: [routes.LANDING, routes.STORY, routes.LODGING, routes.ACTIVITIES, routes.REGISTRY, routes.RSVP],
     };
 
     this.onHandleScroll = this.onHandleScroll.bind(this);
@@ -126,6 +126,16 @@ class ContentContainer extends Component {
                 render={() => (
                   <StackNavItem handleWheel={this.onHandleScroll} orderIndex={this.getOrderIndex(routes.RSVP)}>
                     <RSVP />
+                  </StackNavItem>
+                )}
+              />
+
+              <Route
+                exact
+                path={routes.ACTIVITIES}
+                render={() => (
+                  <StackNavItem handleWheel={this.onHandleScroll} orderIndex={this.getOrderIndex(routes.ACTIVITIES)}>
+                    <Activities />
                   </StackNavItem>
                 )}
               />
