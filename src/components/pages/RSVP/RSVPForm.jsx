@@ -96,7 +96,9 @@ class RSVPForm extends React.Component {
       <form
         onSubmit={tEvent => {
           tEvent.preventDefault();
-          onRsvp(selectedGuest);
+          if (selectedGuest) {
+            onRsvp(selectedGuest);
+          }
         }}
         className="RSVPForm__form"
       >
