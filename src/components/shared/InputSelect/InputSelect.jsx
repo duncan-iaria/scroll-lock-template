@@ -41,7 +41,10 @@ class InputSelect extends React.Component {
         type="text"
         name={name}
         value={value}
-        onChange={updateField}
+        onChange={tEvent => {
+          updateField(tEvent);
+          this.setState({ isActive: true });
+        }}
         onClick={() => {
           this.setState({ isActive: true });
         }}
