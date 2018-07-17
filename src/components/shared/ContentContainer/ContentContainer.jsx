@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, withRouter, Switch } from 'react-router-dom';
 import { TransitionGroup } from 'react-transition-group';
 import routes from '../../../constants/route.constants';
+import { searchGuests } from '../../../api';
 
 //COMPONENTS
 import { Registry, Landing, Story, Lodging, RSVP, Activities } from '../../pages';
@@ -27,6 +28,10 @@ class ContentContainer extends Component {
     };
 
     this.onHandleScroll = this.onHandleScroll.bind(this);
+  }
+
+  componentDidMount() {
+    searchGuests('none shall pass');
   }
 
   onHandleScroll(scrollDir, orderIndex) {
