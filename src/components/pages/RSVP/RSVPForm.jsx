@@ -1,6 +1,6 @@
 import React from 'react';
 import { debounce } from 'lodash';
-import { searchGuests } from '../../../api/GuestAPI';
+import { searchGuests } from '../../../api/';
 import { InputCheckbox, InputSelect, DropdownSelect, AnimatedText } from '../../shared/';
 
 // STYLES
