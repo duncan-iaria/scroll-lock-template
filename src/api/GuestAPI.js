@@ -3,24 +3,28 @@ import { getBaseUrl } from './api';
 const API_URL = getBaseUrl();
 const guestErrorMessage =
   'Error creating R.S.V.P. Please try again. If this error persists, contact Duncan or Rhiannon';
+const searchErrorMessage = 'Error encountered when searching, please try again.';
 
 export const searchGuests = async tGuestSearch => {
   let tempUrl = new URL(`${API_URL}/GetGuest`);
   let tempResponse;
 
   tempUrl.searchParams.append('guestSearch', tGuestSearch);
-
+  console.log('tGuestSearch — ', tGuestSearch);
   try {
     tempResponse = await fetch(tempUrl);
     tempResponse = await tempResponse.json();
     const { data, error } = tempResponse;
+
     if (error) {
-      throw new Error(error);
+      throw new Error('oh no');
     }
+
     tempResponse = data;
+    console.log('tempResponse — ', tempResponse);
   } catch (tError) {
     console.error('error searching for guest: ', tError);
-    tempResponse = [];
+    throw new Error(searchErrorMessage);
   }
 
   return tempResponse;

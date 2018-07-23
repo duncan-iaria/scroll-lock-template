@@ -30,8 +30,12 @@ class ContentContainer extends Component {
     this.onHandleScroll = this.onHandleScroll.bind(this);
   }
 
-  componentDidMount() {
-    searchGuests('none shall pass');
+  async componentDidMount() {
+    try {
+      await searchGuests('none shall pass');
+    } catch (error) {
+      console.log('error', error);
+    }
   }
 
   onHandleScroll(scrollDir, orderIndex) {

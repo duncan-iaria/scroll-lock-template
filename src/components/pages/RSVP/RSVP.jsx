@@ -19,6 +19,7 @@ class RSVP extends React.Component {
       isRsvp: false,
       isAttending: false,
       isLoading: false,
+      error: null,
     };
   }
 
@@ -53,7 +54,7 @@ class RSVP extends React.Component {
             <p>Updating your reservation...</p>
           ) : isRsvp ? null : (
             <div className="RSVP__text">
-              {error ? <p>{error.message} </p> : <p>We'd love to have you...</p>}
+              {error ? <p className="error">{error.message} </p> : <p>We'd love to have you...</p>}
               <RSVPForm onRsvp={this.onRsvp} />
             </div>
           )}

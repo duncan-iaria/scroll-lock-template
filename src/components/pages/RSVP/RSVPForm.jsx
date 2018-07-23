@@ -14,6 +14,7 @@ class RSVPForm extends React.Component {
       selectedGuest: null,
       isLoading: false,
       guests: [],
+      error: null,
     };
 
     this.getGuest = debounce(this.getGuest, 250);
@@ -52,16 +53,21 @@ class RSVPForm extends React.Component {
 
     if (name) {
       this.setState({ isLoading: true });
-      const tempResponse = await searchGuests(name);
-      // console.log(tempResponse);
-      if (tempResponse) {
-        guests = tempResponse.map(tempGuest => {
-          return {
-            id: tempGuest._id,
-            name: tempGuest.displayName,
-            ...tempGuest,
-          };
-        });
+
+      try {
+        const tempResponse = await searchGuests(name);
+        if (tempResponse) {
+          guests = tempResponse.map(tempGuest => {
+            return {
+              id: tempGuest._id,
+              name: tempGuest.displayName,
+              ...tempGuest,
+            };
+          });
+        }
+      } catch (tError) {
+        console.log('hello?');
+        this.setState({ error: tError });
       }
 
       this.setState({ guests, isLoading: false });
@@ -90,7 +96,7 @@ class RSVPForm extends React.Component {
   };
 
   render() {
-    const { selectedGuest, isLoading, name, guests } = this.state;
+    const { selectedGuest, isLoading, name, guests, error } = this.state;
     const { onRsvp } = this.props;
     return (
       <form
@@ -103,6 +109,7 @@ class RSVPForm extends React.Component {
         className="RSVPForm__form"
       >
         <div className="RSVPForm__input-section">
+          {error && <p className="error">{error.message}</p>}
           <div className="RSVPForm__input-row">
             <InputSelect
               value={name}
