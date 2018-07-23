@@ -149,7 +149,15 @@ class ContentContainer extends Component {
                 )}
               />
 
-              <Route exact path={routes.CONFIRMATION} component={Confirmation} />
+              <Route
+                exact
+                path={routes.CONFIRMATION}
+                render={() => (
+                  <StackNavItem handleWheel={this.onHandleScroll} orderIndex={this.getOrderIndex(routes.STORY)}>
+                    <Confirmation />
+                  </StackNavItem>
+                )}
+              />
 
               <Route render={() => <div>Page not found...</div>} />
             </Switch>

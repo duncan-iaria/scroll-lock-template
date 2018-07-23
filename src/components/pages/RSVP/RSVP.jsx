@@ -33,6 +33,7 @@ class RSVP extends React.Component {
       })
       .catch(tError => {
         console.error(tError);
+        this.setState({ error: tError });
       })
       .finally(() => {
         this.setState({ isLoading: false });
@@ -40,7 +41,7 @@ class RSVP extends React.Component {
   };
 
   render() {
-    const { isRsvp, isLoading } = this.state;
+    const { isRsvp, isLoading, error } = this.state;
     return (
       <div className="RSVP__container">
         <div className="RSVP__title">
@@ -49,10 +50,10 @@ class RSVP extends React.Component {
         <img className="spacer" src={flourish} alt={'Spacer Flourish'} />
         <AnimatedText>
           {isLoading ? (
-            <div>loading</div>
+            <p>Updating your reservation...</p>
           ) : isRsvp ? null : (
             <div className="RSVP__text">
-              <p>We'd love to have you...</p>
+              {error ? <p>{error.message} </p> : <p>We'd love to have you...</p>}
               <RSVPForm onRsvp={this.onRsvp} />
             </div>
           )}
