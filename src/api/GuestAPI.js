@@ -10,7 +10,6 @@ export const searchGuests = async tGuestSearch => {
   let tempResponse;
 
   tempUrl.searchParams.append('guestSearch', tGuestSearch);
-  console.log('tGuestSearch — ', tGuestSearch);
   try {
     tempResponse = await fetch(tempUrl);
     tempResponse = await tempResponse.json();
@@ -21,9 +20,7 @@ export const searchGuests = async tGuestSearch => {
     }
 
     tempResponse = data;
-    console.log('tempResponse — ', tempResponse);
   } catch (tError) {
-    console.error('error searching for guest: ', tError);
     throw new Error(searchErrorMessage);
   }
 
