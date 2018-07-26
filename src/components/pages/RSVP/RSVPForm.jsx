@@ -66,11 +66,11 @@ class RSVPForm extends React.Component {
           });
         }
       } catch (tError) {
-        console.log('hello?');
-        this.setState({ error: tError });
+        this.setState({ error: tError, isLoading: false });
+        return;
       }
 
-      this.setState({ guests, isLoading: false });
+      this.setState({ guests, isLoading: false, error: null });
     }
   };
 

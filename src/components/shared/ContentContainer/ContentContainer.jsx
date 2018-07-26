@@ -34,7 +34,7 @@ class ContentContainer extends Component {
     try {
       await searchGuests('none shall pass');
     } catch (error) {
-      console.log('error', error);
+      console.error('error', error);
     }
   }
 
