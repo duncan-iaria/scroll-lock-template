@@ -6,6 +6,7 @@ export const ACTIVITIES = '/activities';
 export const LODGING = '/lodging';
 export const REGISTRY = '/registry';
 export const STORY = '/story';
+export const CONFIRMATION = '/confirmation';
 export const RSVP = '/RSVP';
 
 //=========================
@@ -17,6 +18,7 @@ const exportMaster = {
   LODGING,
   REGISTRY,
   STORY,
+  CONFIRMATION,
   RSVP,
 };
 

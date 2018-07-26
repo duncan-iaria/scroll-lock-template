@@ -5,7 +5,7 @@ import routes from '../../../constants/route.constants';
 import { searchGuests } from '../../../api';
 
 //COMPONENTS
-import { Registry, Landing, Story, Lodging, RSVP, Activities } from '../../pages';
+import { Registry, Landing, Story, Lodging, RSVP, Activities, Confirmation } from '../../pages';
 import Header from '../Header/Header';
 import PageTransition from '../Transitions/PageTransition';
 import StackNavItem from '../Transitions/StackNavItem';
@@ -30,8 +30,12 @@ class ContentContainer extends Component {
     this.onHandleScroll = this.onHandleScroll.bind(this);
   }
 
-  componentDidMount() {
-    searchGuests('none shall pass');
+  async componentDidMount() {
+    try {
+      await searchGuests('none shall pass');
+    } catch (error) {
+      console.error('error', error);
+    }
   }
 
   onHandleScroll(scrollDir, orderIndex) {
@@ -145,6 +149,16 @@ class ContentContainer extends Component {
                 render={() => (
                   <StackNavItem handleWheel={this.onHandleScroll} orderIndex={this.getOrderIndex(routes.ACTIVITIES)}>
                     <Activities />
+                  </StackNavItem>
+                )}
+              />
+
+              <Route
+                exact
+                path={routes.CONFIRMATION}
+                render={() => (
+                  <StackNavItem handleWheel={this.onHandleScroll} orderIndex={this.getOrderIndex(routes.STORY)}>
+                    <Confirmation />
                   </StackNavItem>
                 )}
               />

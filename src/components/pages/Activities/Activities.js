@@ -23,29 +23,31 @@ const Activities = () => {
             is a ton of fun stuff that can be done outdoors. Listed below are a few close options, but is by no means
             close to a complete list!
           </p>
-          <div className="Activities__label">If You Like Hiking</div>
+          <div className="Activities__label">Hiking</div>
           <p>Tallulah Gorge State Park (~10 min drive)</p>
           <p>Black Rock Mountain State Park (~30 min drive from the venue)</p>
 
-          <div className="Activities__label">If You Like Waterfalls</div>
+          <div className="Activities__label">Waterfalls</div>
           <p>
             Check out this site:{' '}
             <a href="http://www.wandernorthgeorgia.com/lake-rabun-waterfalls/">www.wandernorthgeorgia.com</a>
           </p>
 
-          <div className="Activities__label">If You Like Goats & All Things Amish</div>
+          <div className="Activities__label">Goats & All Things Amish</div>
           <p>
             <a href="http://www.goats-on-the-roof.com/">Goats on the Roof</a> (~10 min drive)
           </p>
 
-          <div className="Activities__label">If You Like Alcohol</div>
+          <div className="Activities__label">Libations</div>
           <p>
             <a href="https://www.moonrisedistillery.com/">Moonrise Distillery</a> (~15 min drive)
           </p>
           <p>
             <a href="http://www.tigerwine.com/">Tiger Mountain Vineyards</a> (~15 min drive)
           </p>
-          <p>12 Spies Vineyard (~25 min drive)</p>
+          <p>
+            <a href="http://www.12spiesvineyards.com/"> 12 Spies Vineyard</a> (~25 min drive)
+          </p>
         </AnimatedText>
       </div>
       <img src={tree} alt={'Tree Logo'} height={32} style={{ padding: '30px' }} />

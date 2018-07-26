@@ -1,0 +1,35 @@
+@import '../../styles/variables.style.scss';
+@import '../../styles/mixins.style.scss';
+
+.Confirmation__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  background-color: $backgroundWhite;
+  overflow-y: auto;
+
+  .Confirmation__title {
+    font-size: 1.33em;
+    margin-top: calc(#{$headerHeight} + 125px);
+  }
+
+  .Confirmation__text {
+    width: 550px;
+    margin-top: 50px;
+
+    p {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+
+    @include phablet {
+      width: 450px;
+    }
+
+    @include phone {
+      width: 300px;
+    }
+  }
+}

@@ -122,13 +122,21 @@
   .InputSelect__clear-icon {
     cursor: pointer;
     margin-left: 6px;
+    margin-top: 3px;
     border: 1px solid $textDark;
     border-radius: 4px;
-    padding: 2px;
-    height: 16px;
+    padding: 4px 2px 2px 2px;
+    height: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: border 150ms, color 150ms, background-color 150ms;
+
+    &:hover {
+      border: 1px solid transparent;
+      color: white;
+      background-color: $sophieOrange;
+    }
   }
 
   .InputSelect__info {
