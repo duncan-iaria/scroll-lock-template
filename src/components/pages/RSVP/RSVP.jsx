@@ -1,5 +1,7 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { updateGuest } from '../../../api/';
+import routes from '../../../constants/route.constants';
 
 // COMPONENTS
 import { AnimatedText } from '../../shared';
@@ -17,17 +19,22 @@ class RSVP extends React.Component {
       isRsvp: false,
       isAttending: false,
       isLoading: false,
+      error: null,
     };
   }
 
   onRsvp = tGuest => {
+    const { history } = this.props;
+
     this.setState({ isLoading: true });
     updateGuest(tGuest)
-      .then(() => {
+      .then(updatedGuest => {
         this.setState({ isRsvp: true });
+        history.push(routes.CONFIRMATION, { reservedGuest: updatedGuest });
       })
       .catch(tError => {
         console.error(tError);
+        this.setState({ error: tError });
       })
       .finally(() => {
         this.setState({ isLoading: false });
@@ -35,23 +42,19 @@ class RSVP extends React.Component {
   };
 
   render() {
-    const { isRsvp, isLoading } = this.state;
+    const { isRsvp, isLoading, error } = this.state;
     return (
       <div className="RSVP__container">
         <div className="RSVP__title">
-          <h1>R.S.V.P</h1>
+          <h1>R.S.V.P.</h1>
         </div>
         <img className="spacer" src={flourish} alt={'Spacer Flourish'} />
         <AnimatedText>
           {isLoading ? (
-            <div>loading</div>
-          ) : isRsvp ? (
+            <p>Updating your reservation...</p>
+          ) : isRsvp ? null : (
             <div className="RSVP__text">
-              <p>See you soon...</p>
-            </div>
-          ) : (
-            <div className="RSVP__text">
-              <p>We'd love to have you...</p>
+              {error ? <p className="error">{error.message} </p> : <p>We'd love to have you...</p>}
               <RSVPForm onRsvp={this.onRsvp} />
             </div>
           )}
@@ -62,4 +65,4 @@ class RSVP extends React.Component {
   }
 }
 
-export default RSVP;
+export default withRouter(RSVP);

@@ -14,6 +14,7 @@ class RSVPForm extends React.Component {
       selectedGuest: null,
       isLoading: false,
       guests: [],
+      error: null,
     };
 
     this.getGuest = debounce(this.getGuest, 250);
@@ -50,21 +51,27 @@ class RSVPForm extends React.Component {
     const { name } = this.state;
     let guests;
 
-    this.setState({ isLoading: true });
-    const tempResponse = await searchGuests(name);
-    console.log(tempResponse);
-    if (tempResponse) {
-      guests = tempResponse.map(tempGuest => {
-        return {
-          id: tempGuest._id,
-          name: tempGuest.displayName,
-          ...tempGuest,
-        };
-      });
-    }
+    if (name) {
+      this.setState({ isLoading: true });
 
-    this.setState({ guests, isLoading: false });
-    console.log(tempResponse);
+      try {
+        const tempResponse = await searchGuests(name);
+        if (tempResponse) {
+          guests = tempResponse.map(tempGuest => {
+            return {
+              id: tempGuest._id,
+              name: tempGuest.displayName,
+              ...tempGuest,
+            };
+          });
+        }
+      } catch (tError) {
+        this.setState({ error: tError, isLoading: false });
+        return;
+      }
+
+      this.setState({ guests, isLoading: false, error: null });
+    }
   };
 
   getMaxGuests = maxGuestCount => {
@@ -81,7 +88,6 @@ class RSVPForm extends React.Component {
 
   selectGuestAttendance = ({ name, value: tNumberAttending }) => {
     const { selectedGuest } = this.state;
-    console.log('name:', name);
     this.setState({ selectedGuest: { ...selectedGuest, [name]: tNumberAttending } });
   };
 
@@ -90,7 +96,7 @@ class RSVPForm extends React.Component {
   };
 
   render() {
-    const { selectedGuest, isLoading, name, guests } = this.state;
+    const { selectedGuest, isLoading, name, guests, error } = this.state;
     const { onRsvp } = this.props;
     return (
       <form
@@ -103,6 +109,7 @@ class RSVPForm extends React.Component {
         className="RSVPForm__form"
       >
         <div className="RSVPForm__input-section">
+          {error && <p className="error">{error.message}</p>}
           <div className="RSVPForm__input-row">
             <InputSelect
               value={name}
@@ -156,43 +163,45 @@ class RSVPForm extends React.Component {
                   </div>
                 )}
             </div>
-            <div className="RSVPForm__input-section">
-              <div className="RSVPForm__input-row">
-                <div className="RSVPForm__label">Welcome Dinner</div>
+            {selectedGuest.isWelcomeInvite && (
+              <div className="RSVPForm__input-section">
+                <div className="RSVPForm__input-row">
+                  <div className="RSVPForm__label">Welcome Dinner</div>
+                </div>
+                <div className="RSVPForm__input-row">
+                  <InputCheckbox
+                    name="isWelcomeRsvp"
+                    label="Attending!"
+                    value={selectedGuest.isWelcomeRsvp}
+                    onClick={tEvent => {
+                      tEvent.target.value = !!selectedGuest.isWelcomeRsvp;
+                      this.updateField(tEvent);
+                    }}
+                  />
+                  <InputCheckbox
+                    name="isWelcomeRsvp"
+                    label="Regretfully Decline."
+                    value={!selectedGuest.isWelcomeRsvp}
+                    onClick={tEvent => {
+                      tEvent.target.value = !!selectedGuest.isWelcomeRsvp;
+                      this.updateField(tEvent);
+                    }}
+                  />
+                </div>
+                {selectedGuest.isWelcomeRsvp &&
+                  selectedGuest.maxGuestCount > 1 && (
+                    <div className="RSVPForm__input-row">
+                      <DropdownSelect
+                        name="attendingWelcomeGuestCount"
+                        label="Guests in Attendance"
+                        selectedValue={selectedGuest.attendingWelcomeGuestCount}
+                        selectOption={this.selectGuestAttendance}
+                        options={this.getMaxGuests(selectedGuest.maxGuestCount)}
+                      />
+                    </div>
+                  )}
               </div>
-              <div className="RSVPForm__input-row">
-                <InputCheckbox
-                  name="isWelcomeRsvp"
-                  label="Attending!"
-                  value={selectedGuest.isWelcomeRsvp}
-                  onClick={tEvent => {
-                    tEvent.target.value = !!selectedGuest.isWelcomeRsvp;
-                    this.updateField(tEvent);
-                  }}
-                />
-                <InputCheckbox
-                  name="isWelcomeRsvp"
-                  label="Regretfully Decline."
-                  value={!selectedGuest.isWelcomeRsvp}
-                  onClick={tEvent => {
-                    tEvent.target.value = !!selectedGuest.isWelcomeRsvp;
-                    this.updateField(tEvent);
-                  }}
-                />
-              </div>
-              {selectedGuest.isWelcomeRsvp &&
-                selectedGuest.maxGuestCount > 1 && (
-                  <div className="RSVPForm__input-row">
-                    <DropdownSelect
-                      name="attendingWelcomeGuestCount"
-                      label="Guests in Attendance"
-                      selectedValue={selectedGuest.attendingWelcomeGuestCount}
-                      selectOption={this.selectGuestAttendance}
-                      options={this.getMaxGuests(selectedGuest.maxGuestCount)}
-                    />
-                  </div>
-                )}
-            </div>
+            )}
             <div className="RSVPForm__input-row">
               <input type="submit" value="RSVP" />
             </div>
