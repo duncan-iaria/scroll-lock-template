@@ -5,15 +5,50 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
   align-items: center;
-  //   background: linear-gradient($lightPurple, $lightPink);
   background-color: $backgroundWhite;
   overflow-y: auto;
 
   .Registry__title {
     font-size: 1.33em;
     margin-top: calc(#{$headerHeight} + 125px);
+  }
+
+  .Registry__button-container {
+    margin-top: 12px;
+    margin-bottom: 124px;
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      padding: 12px 4px 4px 4px;
+      color: $textDark;
+      border: 3px solid $textDark;
+      padding-top: 4px;
+      cursor: pointer;
+      height: 36px;
+      min-width: 184px;
+      background-color: white;
+      transition: background-color 250ms, color 250ms;
+      border-radius: 0;
+
+      &:hover {
+        color: white;
+        background-color: $treeGreen;
+      }
+
+      @include phablet {
+        margin-top: 12px;
+      }
+    }
+
+    @include phablet {
+      flex-direction: column;
+    }
   }
 
   .Registry__text {

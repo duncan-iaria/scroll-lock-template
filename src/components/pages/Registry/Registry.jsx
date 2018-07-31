@@ -20,12 +20,13 @@ const Registry = () => {
         <div className="Registry__text">
           <p>
             Having all of our family and friends come and spend the weekend with us is more than enough of a wedding
-            present. But if you must, below you will a link to our registry. You’ll notice that the only option is for
-            gift cards, as we have no room to put extra things at the moment!
+            present. But if you must, below are links to our registry and honeymoon fund. You’ll notice that the only
+            option in our registry is for gift cards, as we have no room to put extra things at the moment!
           </p>
-          <p>
+          <div className="Registry__button-container">
             <a href="https://www.williams-sonoma.com/registry/dmw659ttgh/registry-list.html">William & Sonoma</a>
-          </p>
+            <a href="https://www.honeyfund.com/wedding/DandRhi">Honeyfund</a>
+          </div>
         </div>
       </AnimatedText>
       <img src={tree} alt={'Tree Logo'} height={32} style={{ padding: '30px' }} />
