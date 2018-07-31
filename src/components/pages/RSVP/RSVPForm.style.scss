@@ -31,10 +31,6 @@
     // border: 3px solid $textDark;
   }
 
-  input[type='submit'] {
-    border: 3px solid $textDark;
-  }
-
   input[type='checkbox'] {
     outline: none;
     color: $textDark;
@@ -162,12 +158,14 @@
   }
 
   input[type='submit'] {
+    border: 3px solid $textDark;
     padding-top: 4px;
     cursor: pointer;
     height: 36px;
     min-width: 100px;
     background-color: white;
     transition: background-color 250ms, color 250ms;
+    border-radius: 0;
 
     &:hover {
       color: white;
