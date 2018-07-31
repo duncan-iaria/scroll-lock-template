@@ -10,6 +10,7 @@ export const searchGuests = async tGuestSearch => {
   let tempResponse;
 
   tempUrl.searchParams.append('guestSearch', tGuestSearch);
+
   try {
     tempResponse = await fetch(tempUrl);
     tempResponse = await tempResponse.json();
@@ -30,6 +31,7 @@ export const searchGuests = async tGuestSearch => {
 export const updateGuest = async tGuest => {
   let tempUrl = new URL(`${API_URL}/UpdateGuest`);
   let tempResponse;
+
   try {
     tempResponse = await fetch(tempUrl, {
       method: 'PUT',
@@ -40,6 +42,7 @@ export const updateGuest = async tGuest => {
     });
 
     tempResponse = await tempResponse.json();
+
     const { data, error } = tempResponse;
     if (error) {
       throw new Error(guestErrorMessage);
@@ -48,5 +51,6 @@ export const updateGuest = async tGuest => {
   } catch (tError) {
     throw new Error(guestErrorMessage);
   }
+
   return tempResponse;
 };

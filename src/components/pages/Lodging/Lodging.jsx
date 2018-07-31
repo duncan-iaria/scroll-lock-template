@@ -21,7 +21,7 @@ const Lodging = () => {
           <p>
             Unfortunately, there is not enough room for all of our loved ones to stay at the inn/cabins. So unless you
             have been told that you will be staying at the inn/cabins, we will have to find somewhere else for you to
-            sleep! Not to worry – there are plenty of close options nearby and there will be an available
+            sleep! Not to worry — there are plenty of close options nearby and there will be an available
             shuttle/transportation service to get you back to bed after the festivities.
           </p>
           <div className="Lodging__label">Inn / Fish Camp</div>
