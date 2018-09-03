@@ -5,7 +5,7 @@ import routes from '../../../constants/route.constants';
 import { searchGuests } from '../../../api';
 
 //COMPONENTS
-import { Registry, Landing, Story, Lodging, RSVP, Activities, Confirmation } from '../../pages';
+import { Registry, Landing, Story, Lodging, RSVP, Activities, Confirmation, GuestList } from '../../pages';
 import Header from '../Header/Header';
 import PageTransition from '../Transitions/PageTransition';
 import StackNavItem from '../Transitions/StackNavItem';
@@ -159,6 +159,16 @@ class ContentContainer extends Component {
                 render={() => (
                   <StackNavItem handleWheel={this.onHandleScroll} orderIndex={this.getOrderIndex(routes.STORY)}>
                     <Confirmation />
+                  </StackNavItem>
+                )}
+              />
+
+              <Route
+                exact
+                path={routes.GUEST_LIST}
+                render={() => (
+                  <StackNavItem handleWheel={this.onHandleScroll} orderIndex={this.getOrderIndex(routes.STORY)}>
+                    <GuestList />
                   </StackNavItem>
                 )}
               />
