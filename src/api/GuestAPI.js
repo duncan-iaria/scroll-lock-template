@@ -54,3 +54,65 @@ export const updateGuest = async tGuest => {
 
   return tempResponse;
 };
+
+export const getAllGuests = async () => {
+  let tempUrl = new URL(`${API_URL}/GetGuests`);
+  let tempResponse;
+
+  try {
+    tempResponse = await fetch(tempUrl);
+    tempResponse = await tempResponse.json();
+    const { data, error } = tempResponse;
+
+    if (error) {
+      throw new Error('error finding all guests');
+    }
+
+    tempResponse = data;
+  } catch (tError) {
+    throw new Error(searchErrorMessage);
+  }
+
+  const attendingWeddingGuests = tempResponse.filter(tempGuest => {
+    if (tempGuest.isResponded && tempGuest.isWeddingRsvp) {
+      return tempGuest;
+    } else return null;
+  });
+
+  const notRespondedGuests = tempResponse.filter(tempGuest => {
+    if (!tempGuest.isResponded) {
+      return tempGuest;
+    } else return null;
+  });
+
+  const notAttendingGuests = tempResponse.filter(tempGuest => {
+    if (tempGuest.isResponded && !tempGuest.isWeddingRsvp) {
+      return tempGuest;
+    } else return null;
+  });
+
+  const attendingWelcomeGuests = tempResponse.filter(tempGuest => {
+    if (tempGuest.isResponded && tempGuest.isWelcomeRsvp) {
+      return tempGuest;
+    } else return null;
+  });
+
+  const totalWeddingCount = attendingWeddingGuests.reduce(
+    (acc, tempGuest) => acc + tempGuest.attendingWeddingGuestCount,
+    0
+  );
+
+  const totalWelcomeCount = attendingWelcomeGuests.reduce(
+    (acc, tempGuest) => acc + tempGuest.attendingWelcomeGuestCount,
+    0
+  );
+
+  return {
+    totalWeddingCount,
+    totalWelcomeCount,
+    attendingWeddingGuests,
+    notRespondedGuests,
+    notAttendingGuests,
+    attendingWelcomeGuests,
+  };
+};

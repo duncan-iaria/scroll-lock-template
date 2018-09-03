@@ -1,3 +1,3 @@
-import { searchGuests, updateGuest } from './GuestAPI';
+import { searchGuests, updateGuest, getAllGuests } from './GuestAPI';
 
-export { searchGuests, updateGuest };
+export { searchGuests, updateGuest, getAllGuests };

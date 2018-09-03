@@ -17,9 +17,9 @@
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
-    "start": "REACT_APP_ENV=development npm-run-all -p watch-css start-js",
+    "start": "cross-env REACT_APP_ENV=development npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
-    "build": "REACT_APP_ENV=production npm-run-all build-css build-js",
+    "build": "cross-env REACT_APP_ENV=production npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
@@ -30,6 +30,7 @@
     "printWidth": 120
   },
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "node-sass-chokidar": "^1.3.0"
   }
 }
