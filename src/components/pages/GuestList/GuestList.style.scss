@@ -1,0 +1,58 @@
+@import '../../styles/variables.style.scss';
+@import '../../styles/mixins.style.scss';
+
+.GuestList__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: $backgroundWhite;
+  overflow-y: auto;
+
+  .GuestList__title {
+    font-size: 1.33em;
+    align-self: center;
+    margin-top: calc(#{$headerHeight} + 125px);
+  }
+
+  .GuestList__section-title {
+    font-size: 1.33em;
+    align-self: center;
+    margin-bottom: 12px;
+    margin-top: 12px;
+  }
+
+  .GuestList_totals {
+    margin-bottom: 48px;
+  }
+
+  .GuestList__text {
+    width: 550px;
+    margin-top: 50px;
+    align-self: center;
+
+    p {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+
+    ul {
+      margin-bottom: 24px;
+    }
+
+    @include phablet {
+      width: 450px;
+    }
+
+    @include phone {
+      width: 300px;
+    }
+  }
+
+  .GuestList__label {
+    font-family: 'Amatic SC', cursive;
+    margin-top: 24px;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+  }
+}

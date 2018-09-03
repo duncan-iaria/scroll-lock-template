@@ -8,6 +8,7 @@ export const REGISTRY = '/registry';
 export const STORY = '/story';
 export const CONFIRMATION = '/confirmation';
 export const RSVP = '/RSVP';
+export const GUEST_LIST = '/gl';
 
 //=========================
 // EXPORT MASTER
@@ -20,6 +21,7 @@ const exportMaster = {
   STORY,
   CONFIRMATION,
   RSVP,
+  GUEST_LIST,
 };
 
 export default exportMaster;
