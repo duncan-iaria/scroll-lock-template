@@ -9,6 +9,7 @@ export const STORY = '/story';
 export const CONFIRMATION = '/confirmation';
 export const RSVP = '/RSVP';
 export const GUEST_LIST = '/gl';
+export const PHOTOS = '/photos';
 
 //=========================
 // EXPORT MASTER
@@ -22,6 +23,7 @@ const exportMaster = {
   CONFIRMATION,
   RSVP,
   GUEST_LIST,
+  PHOTOS,
 };
 
 export default exportMaster;

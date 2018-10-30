@@ -5,7 +5,7 @@ import routes from '../../../constants/route.constants';
 import { searchGuests } from '../../../api';
 
 //COMPONENTS
-import { Registry, Landing, Story, Lodging, RSVP, Activities, Confirmation, GuestList } from '../../pages';
+import { Registry, Landing, Story, Lodging, RSVP, Activities, Confirmation, GuestList, Photos } from '../../pages';
 import Header from '../Header/Header';
 import PageTransition from '../Transitions/PageTransition';
 import StackNavItem from '../Transitions/StackNavItem';
@@ -172,6 +172,8 @@ class ContentContainer extends Component {
                   </StackNavItem>
                 )}
               />
+
+              <Route exact path={routes.PHOTOS} component={Photos} />
 
               <Route render={() => <div>Page not found...</div>} />
             </Switch>
